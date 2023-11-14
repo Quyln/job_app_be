@@ -71,3 +71,29 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](LICENSE).
+
+
+
+
+// Linux Ubuntu
+-> Bash: ngôn ngữ 
+
+Git
+
+Github
+
+SSH
+
+VPS
+
+nginx -> Reverse proxy
+
+deploy flow
+
+-> DevOPs: giữ Backend luôn chạy
+
+Github Action: CI/CD
+
+Domain -> Mapping được domain <-> Server
+
+Bảo mật: Cloud Flare : DDos
