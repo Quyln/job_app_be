@@ -11,6 +11,7 @@ import { UserService } from './user.service';
 import { User } from './user.entity';
 import { updateUserDto } from './component/update.user.dto';
 import { signInUserDto } from './component/signin.dto';
+import { forgotPasswordDto } from './component/forgot-password.dto';
 
 @Controller('users')
 export class UserController {
@@ -42,5 +43,10 @@ export class UserController {
   @Post('signin')
   async signin(@Body() body: signInUserDto): Promise<User> {
     return await this.userService.signIn(body);
+  }
+
+  @Post('forgot-password')
+  async forgotPassword(@Body() body: forgotPasswordDto): Promise<boolean> {
+    return await this.userService.forgotPassword(body);
   }
 }
