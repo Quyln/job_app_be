@@ -76,7 +76,7 @@ Nest is [MIT licensed](LICENSE).
 
 
 // Linux Ubuntu
--> Bash: ngôn ngữ 
+-> Bash: ngôn ngữ
 
 Git
 
