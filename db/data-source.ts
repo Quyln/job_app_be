@@ -1,11 +1,10 @@
-import { flatten } from '@nestjs/common';
 import { DataSource, DataSourceOptions } from 'typeorm';
 
 function getConfig(): DataSourceOptions {
   return {
     type: 'postgres',
     host: 'localhost',
-    port: 5432,
+    port: 5440,
     username: 'postgres',
     password: '123456789',
     database: 'db_job_be',
