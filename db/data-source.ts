@@ -4,13 +4,13 @@ function getConfig(): DataSourceOptions {
   return {
     type: 'postgres',
     host: 'localhost',
-    port: 5440,
+    port: 5432,
     username: 'postgres',
     password: '123456789',
     database: 'db_job_be',
     entities: ['dist/**/*.entity.{ts,js}'],
     migrations: ['dist/db/migrations/*.js'],
-    synchronize: true,
+    synchronize: false,
   };
 }
 
