@@ -6,7 +6,7 @@ function getConfig(): DataSourceOptions {
     host: 'localhost',
     port: 5432,
     username: 'postgres',
-    password: '',
+    password: '1234',
     database: 'db_job_be',
     entities: ['dist/**/*.entity.{ts,js}'],
     migrations: ['dist/db/migrations/*.js'],
