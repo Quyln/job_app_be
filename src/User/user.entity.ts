@@ -9,7 +9,7 @@ export class User {
   @Column()
   fullname: string;
   @Column()
-  email: string;
+  email?: string;
   @Column()
   position: string;
   @Column()

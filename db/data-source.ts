@@ -3,11 +3,11 @@ import { DataSource, DataSourceOptions } from 'typeorm';
 function getConfig(): DataSourceOptions {
   return {
     type: 'postgres',
-    host: 'localhost',
+    host: '127.0.0.1',
     port: 5432,
     username: 'postgres',
     password: '1234',
-    database: 'db_job_be',
+    database: 'postgres',
     entities: ['dist/**/*.entity.{ts,js}'],
     migrations: ['dist/db/migrations/*.js'],
     synchronize: false,
