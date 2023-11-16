@@ -11,13 +11,13 @@ export class MailService {
       port: 465,
       secure: true,
       auth: {
-        user: 'khoimailbot@gmail.com',
-        pass: 'jusz tfvx tuxp xtlu',
+        user: 'lunhatquy1111@gmail.com',
+        pass: 'iwni qwjw otck pxoe',
       },
     });
 
     const info = await transporter.sendMail({
-      from: '"Job App" <khoimailbot@gmail.com>', // sender address
+      from: '"Job App" <lunhatquy1111@gmail.com>', // sender address
       to: to, // list of receivers
       subject: subject, // Subject line
       text: text, // plain text body
