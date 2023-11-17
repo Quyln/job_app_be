@@ -35,6 +35,10 @@ export class JobService {
     // covert string to string[]
     const listMotacv:string[] = body.motacv.split(',').map((item)=>item.trim());
     const listYeucaucv:string[] = body.yeucaucv.split(',').map((item)=> item.trim());
+    //covert string to number
+    const latitude = parseFloat(body.latitude);
+    const longitude = parseFloat(body.longitude);
+
 
     const newPost:Job = {
       id: id,
@@ -45,8 +49,8 @@ export class JobService {
       salary: body.salary,
       khuvuchuyen: body.khuvuchuyen,
       khuvuctinh: body.khuvuctinh,
-      latitude: body.latitude,
-      longitude: body.longitude,
+      latitude: latitude,
+      longitude: longitude,
       tencty: body.tencty,
       logocty: body.logocty,
       image: body.image,

@@ -7,8 +7,8 @@ export class createPDto{
     salary:string;
     khuvuctinh:string;
     khuvuchuyen:string;
-    latitude:number;
-    longitude:number;
+    latitude:string;
+    longitude:string;
     tencty:string;
     logocty:string;
     date:string;
