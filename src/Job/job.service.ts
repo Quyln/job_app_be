@@ -5,21 +5,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Job } from './job.entity';
 import { Repository } from 'typeorm';
 import { updateJob } from './component/update_job_dto';
-export class JobClass {
-  id:number;
-  user:string;
-  title:string;
-  position:string;
-  motacv:string[];
-  yeucaucv:string[];
-  salary:string;
-  khuvuctinh:string;
-  khuvuchuyen:string;
-  tencty:string;
-  logocty:string;
-  date:string;
-  image:string;
-}
+
 
 @Injectable()
 
@@ -59,6 +45,8 @@ export class JobService {
       salary: body.salary,
       khuvuchuyen: body.khuvuchuyen,
       khuvuctinh: body.khuvuctinh,
+      latitude: body.latitude,
+      longitude: body.longitude,
       tencty: body.tencty,
       logocty: body.logocty,
       image: body.image,
