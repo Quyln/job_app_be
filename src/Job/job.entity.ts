@@ -21,9 +21,9 @@ export class Job {
     @Column()
     khuvuchuyen:string;
     @Column()
-    latitude:string;
+    latitude:number;
     @Column()
-    longitude:string;
+    longitude:number;
     @Column()
     tencty:string;
     @Column()
