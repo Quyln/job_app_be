@@ -9,7 +9,7 @@ export class User {
   @Column()
   fullname: string;
   @Column()
-  email?: string;
+  email: string;
   @Column()
   position: string;
   @Column()
@@ -21,7 +21,7 @@ export class User {
   @Column()
   token: number;
   @Column()
-  companyname?: string;
+  companyname: string;
   @Column()
-  companytax?: string;
+  companytax: string;
 }

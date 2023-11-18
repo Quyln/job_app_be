@@ -1,6 +1,6 @@
 import { Body, Injectable, Post } from '@nestjs/common';
 import { title } from 'process';
-import { createPDto } from './component/create_job_dto';
+import { createJDto } from './component/create_job_dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Job } from './job.entity';
 import { Repository } from 'typeorm';
@@ -25,7 +25,7 @@ export class JobService {
     })
     return  users;
   }
- async createJob(body: createPDto):Promise<Job>{
+ async createJob(body: createJDto):Promise<Job>{
     const id:string = new Date().getTime().toString();
     // get date
     const day = new Date().getDate();

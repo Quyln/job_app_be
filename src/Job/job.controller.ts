@@ -1,6 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
 import { JobService, } from './job.service';
-import { createPDto } from './component/create_job_dto';
+import { createJDto } from './component/create_job_dto';
 import { Job } from './job.entity';
 import { updateJob } from './component/update_job_dto';
 
@@ -18,7 +18,7 @@ async  getPostUser():Promise<string[]>{
     return await this.jobService.getJobUser();
   }
   @Post()
-async  createPost(@Body() body:createPDto):Promise<Job>{
+async  createPost(@Body() body:createJDto):Promise<Job>{
     console.log('một việc làm mới được gửi lên server với nội dung là ', body)
     return await this.jobService.createJob(body);
   }

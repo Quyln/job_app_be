@@ -1,4 +1,4 @@
-export class createPDto{
+export class createJDto{
     user:string;
     title:string;
     position:string;
