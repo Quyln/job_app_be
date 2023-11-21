@@ -3,7 +3,7 @@ import { title } from 'process';
 import { createJDto } from './component/create_job_dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Job } from './job.entity';
-import { Repository } from 'typeorm';
+import { In, Repository } from 'typeorm';
 import { updateJob } from './component/update_job_dto';
 
 
@@ -25,6 +25,13 @@ export class JobService {
     })
     return  users;
   }
+  async getListJobByID(ids: string[]): Promise<Job[]>{
+    const jobList:Job[] = await this.jobRepository.findBy({
+      id: In(ids)
+    });
+    return jobList;
+  }
+
  async createJob(body: createJDto):Promise<Job>{
     const id:string = new Date().getTime().toString();
     // get date

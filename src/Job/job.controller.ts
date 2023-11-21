@@ -17,6 +17,11 @@ export class JobController {
 async  getPostUser():Promise<string[]>{
     return await this.jobService.getJobUser();
   }
+  @Get('jobsbyid')
+async getJobsById(ids: string[]):Promise<Job[]>{
+  return await this.jobService.getListJobByID(ids);
+}
+
   @Post()
 async  createPost(@Body() body:createJDto):Promise<Job>{
     console.log('một việc làm mới được gửi lên server với nội dung là ', body)
