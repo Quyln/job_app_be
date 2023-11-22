@@ -6,6 +6,7 @@ import { updateUserDto } from './component/update.user.dto';
 import { User } from './user.entity';
 import { forgotPasswordDto } from './component/forgot-password.dto';
 import { MailService } from 'src/mail/mail.service';
+import { createUserDto } from './component/create.user.dto';
 
 @Injectable()
 export class UserService {
@@ -18,7 +19,8 @@ export class UserService {
     return await this.userRepository.find();
   }
 
-  async createUser(body: User): Promise<User> {
+  async createUser(body: createUserDto): Promise<User> {
+    const token:number = 100;
     const newUser: User = {
       id: body.id,
       email: body.email,
@@ -33,7 +35,7 @@ export class UserService {
       postedjobs: body.postedjobs,
       avatar: body.avatar,
       phone: body.phone,
-      token: body.token,
+      token: token,
     };
     await this.userRepository.save(newUser);
     return newUser;
