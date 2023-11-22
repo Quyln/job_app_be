@@ -27,7 +27,8 @@ export class JobService {
   }
   async getListJobByID(ids: string[]): Promise<Job[]>{
     const jobList:Job[] = await this.jobRepository.find()
-    return jobList;
+    const newList:Job[] = jobList.filter(job => ids.includes(job.id))
+    return newList;
   }
 
  async createJob(body: createJDto):Promise<Job>{
