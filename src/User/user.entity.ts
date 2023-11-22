@@ -19,11 +19,11 @@ export class User {
   @Column()
   phone: string;
   @Column()
-  savejobs: string;
+  savejobs?: string;
   @Column()
-  appliedjobs: string;
+  appliedjobs?: string;
   @Column()
-  postedjobs: string;
+  postedjobs?: string;
   @Column()
   token: number;
   @Column()
