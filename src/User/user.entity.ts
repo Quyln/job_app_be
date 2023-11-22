@@ -19,6 +19,12 @@ export class User {
   @Column()
   phone: string;
   @Column()
+  savejobs: string;
+  @Column()
+  appliedjobs: string;
+  @Column()
+  postedjobs: string;
+  @Column()
   token: number;
   @Column()
   companyname: string;

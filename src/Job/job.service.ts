@@ -27,11 +27,8 @@ export class JobService {
   }
   async getJobsById(id:string): Promise<Job[]> {
     const listIds:string[] = id.split(',').map((item)=>item.trim());
-
     const jobList: Job[] = await this.jobRepository.find();
-  
     const filteredList: Job[] = jobList.filter(job => listIds.includes(job.id));
-  
     return filteredList;
   }
 
