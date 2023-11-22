@@ -12,6 +12,7 @@ import { User } from './user.entity';
 import { updateUserDto } from './component/update.user.dto';
 import { signInUserDto } from './component/signin.dto';
 import { forgotPasswordDto } from './component/forgot-password.dto';
+import { createUserDto } from './component/create.user.dto';
 
 @Controller('users')
 export class UserController {
@@ -22,7 +23,7 @@ export class UserController {
     return await this.userService.getUser();
   }
   @Post()
-  async createUser(@Body() body: User): Promise<User> {
+  async createUser(@Body() body: createUserDto): Promise<User> {
     return await this.userService.createUser(body);
   }
   @Patch(':id')
