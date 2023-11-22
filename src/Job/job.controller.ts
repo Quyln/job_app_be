@@ -18,7 +18,7 @@ async  getPostUser():Promise<string[]>{
     return await this.jobService.getJobUser();
   }
   @Get('jobsbyid')
-async getJobsById(ids: string[]):Promise<Job[]>{
+async getJobsById(ids: string):Promise<Job[]>{
   return await this.jobService.getListJobByID(ids);
 }
 

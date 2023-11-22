@@ -25,9 +25,9 @@ export class JobService {
     })
     return  users;
   }
-  async getListJobByID(ids: string[]): Promise<Job[]>{
+  async getListJobByID(ids: string): Promise<Job[]>{
     const jobList:Job[] = await this.jobRepository.findBy({
-      id: In([ids])
+      id: ids
     })
     return jobList;
   }
