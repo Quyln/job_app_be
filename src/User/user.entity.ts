@@ -11,7 +11,7 @@ export class User {
   @Column()
   email: string;
   @Column()
-  position: string;
+  position: 'Thành viên' | 'Nhà tuyển dụng';
   @Column()
   lastjob: string;
   @Column()
