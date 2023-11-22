@@ -25,10 +25,14 @@ export class JobService {
     })
     return  users;
   }
-  async getListJobByID(ids: string[]): Promise<Job[]>{
-    const jobList:Job[] = await this.jobRepository.find()
-    const newList:Job[] = jobList.filter(job => ids.includes(job.id))
-    return newList;
+  async getJobsById(id:string): Promise<Job[]> {
+    const listIds:string[] = id.split(',').map((item)=>item.trim());
+
+    const jobList: Job[] = await this.jobRepository.find();
+  
+    const filteredList: Job[] = jobList.filter(job => listIds.includes(job.id));
+  
+    return filteredList;
   }
 
  async createJob(body: createJDto):Promise<Job>{
