@@ -48,22 +48,27 @@ export class UserService {
       },
     });
     if (body.savejobs) {
-      const savejobsArray = oldUserData.savejobs ? oldUserData.savejobs.split(',') : [];
-      const newSavejobsArray = body.savejobs.split(',');
-      const mergedSavejobsArray = [...savejobsArray, ...newSavejobsArray];
-      const uniqueSavejobsArray = [...new Set(mergedSavejobsArray)];
-      const updatedSavejobs = uniqueSavejobsArray.join(',');
-      oldUserData.savejobs = updatedSavejobs;
+      if(oldUserData.savejobs){
+        body.savejobs = oldUserData.savejobs + ',' + body.savejobs;
+        const newSavejobsArray = body.savejobs.split(',');
+        const savejobsArray = oldUserData.savejobs.split(',')
+        const mergedSavejobsArray = [...savejobsArray, ...newSavejobsArray];
+        const uniqueSavejobsArray = [...new Set(mergedSavejobsArray)];
+        const updatedSavejobs = uniqueSavejobsArray.join(',');
+        body.savejobs = updatedSavejobs;
+      } else {
+        oldUserData.savejobs = body.savejobs;
+      }
     }
     if(body.appliedjobs){
       if(oldUserData.appliedjobs){
         body.appliedjobs = oldUserData.appliedjobs + ',' + body.appliedjobs;
-        const newSavejobsArray = body.appliedjobs.split(',');
-        const savejobsArray = oldUserData.appliedjobs.split(',')
-        const mergedSavejobsArray = [...savejobsArray, ...newSavejobsArray];
-        const uniqueSavejobsArray = [...new Set(mergedSavejobsArray)];
-        const updatedSavejobs = uniqueSavejobsArray.join(',');
-        body.appliedjobs = updatedSavejobs;
+        const newAppliedjobsArray = body.appliedjobs.split(',');
+        const appliedjobsArray = oldUserData.appliedjobs.split(',')
+        const mergedAppliedjobsArray = [...appliedjobsArray, ...newAppliedjobsArray];
+        const uniqueAppliedjobsArray = [...new Set(mergedAppliedjobsArray)];
+        const updatedAppliedjobs = uniqueAppliedjobsArray.join(',');
+        body.appliedjobs = updatedAppliedjobs;
       } else {
         oldUserData.appliedjobs = body.appliedjobs;
       }
@@ -71,6 +76,12 @@ export class UserService {
     if(body.postedjobs){
       if(oldUserData.postedjobs){
         body.postedjobs = oldUserData.postedjobs + ',' + body.postedjobs;
+        const newPostedjobsArray = body.postedjobs.split(',');
+        const postedjobsArray = oldUserData.postedjobs.split(',')
+        const mergedPostedjobsArray = [...postedjobsArray, ...newPostedjobsArray];
+        const uniquePostedjobsArray = [...new Set(mergedPostedjobsArray)];
+        const updatedPostedjobs = uniquePostedjobsArray.join(',');
+        body.postedjobs = updatedPostedjobs;
       } else {
         oldUserData.postedjobs = body.postedjobs;
       }
