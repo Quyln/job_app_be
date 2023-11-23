@@ -58,6 +58,12 @@ export class UserService {
     if(body.appliedjobs){
       if(oldUserData.appliedjobs){
         body.appliedjobs = oldUserData.appliedjobs + ',' + body.appliedjobs;
+        const newSavejobsArray = body.appliedjobs.split(',');
+        const savejobsArray = oldUserData.appliedjobs.split(',')
+        const mergedSavejobsArray = [...savejobsArray, ...newSavejobsArray];
+        const uniqueSavejobsArray = [...new Set(mergedSavejobsArray)];
+        const updatedSavejobs = uniqueSavejobsArray.join(',');
+        body.appliedjobs = updatedSavejobs;
       } else {
         oldUserData.appliedjobs = body.appliedjobs;
       }
