@@ -47,6 +47,27 @@ export class UserService {
         id: id,
       },
     });
+    if(body.savejobs){
+      if(oldUserData.savejobs){
+        body.savejobs = oldUserData.savejobs + ',' + body.savejobs;
+      } else {
+        oldUserData.savejobs = body.savejobs;
+      }
+    }
+    if(body.appliedjobs){
+      if(oldUserData.appliedjobs){
+        body.appliedjobs = oldUserData.appliedjobs + ',' + body.appliedjobs;
+      } else {
+        oldUserData.appliedjobs = body.appliedjobs;
+      }
+    }
+    if(body.postedjobs){
+      if(oldUserData.postedjobs){
+        body.postedjobs = oldUserData.postedjobs + ',' + body.postedjobs;
+      } else {
+        oldUserData.postedjobs = body.postedjobs;
+      }
+    }
     const newUserData = { ...oldUserData, ...body };
     return await this.userRepository.save(newUserData);
   }
