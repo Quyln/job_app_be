@@ -47,12 +47,13 @@ export class UserService {
         id: id,
       },
     });
-    if(body.savejobs){
-      if(oldUserData.savejobs){
-        body.savejobs = oldUserData.savejobs + ',' + body.savejobs;
-      } else {
-        oldUserData.savejobs = body.savejobs;
-      }
+    if (body.savejobs) {
+      const savejobsArray = oldUserData.savejobs ? oldUserData.savejobs.split(',') : [];
+      const newSavejobsArray = body.savejobs.split(',');
+      const mergedSavejobsArray = [...savejobsArray, ...newSavejobsArray];
+      const uniqueSavejobsArray = [...new Set(mergedSavejobsArray)];
+      const updatedSavejobs = uniqueSavejobsArray.join(',');
+      oldUserData.savejobs = updatedSavejobs;
     }
     if(body.appliedjobs){
       if(oldUserData.appliedjobs){
