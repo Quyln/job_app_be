@@ -52,6 +52,7 @@ export class UserService {
       if(getListStringSavejob.includes(body.savejobs)){
        const removeSavejob = getListStringSavejob.filter((item)=> item !== body.savejobs);
        oldUserData.savejobs = removeSavejob.join(',');
+       oldUserData.savejobs = body.savejobs;
       } else{
         if(oldUserData.savejobs){
           body.savejobs = oldUserData.savejobs + ',' + body.savejobs;
