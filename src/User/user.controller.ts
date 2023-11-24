@@ -18,10 +18,6 @@ import { createUserDto } from './component/create.user.dto';
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
-  @Get()
-  async getUser(): Promise<User[]> {
-    return await this.userService.getUser();
-  }
   @Post()
   async createUser(@Body() body: createUserDto): Promise<User> {
     return await this.userService.createUser(body);

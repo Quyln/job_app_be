@@ -15,9 +15,6 @@ export class JobService {
       @InjectRepository(Job)
         private readonly jobRepository: Repository<Job>,
     ){}
- async getJob():Promise<Job[]> {
-    return await this.jobRepository.find();
-  }
  async getJobUser(): Promise<string[]> {
     const userData:Job[] = await this.jobRepository.find();
     const users:string[] = userData.map((post:Job)=> {

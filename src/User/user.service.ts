@@ -15,9 +15,6 @@ export class UserService {
     private readonly userRepository: Repository<User>,
     private readonly mailService: MailService,
   ) {}
-  async getUser(): Promise<User[]> {
-    return await this.userRepository.find();
-  }
 
   async createUser(body: createUserDto): Promise<User> {
     const token:number = 100;
