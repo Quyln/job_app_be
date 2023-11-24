@@ -48,16 +48,15 @@ export class UserService {
       },
     });
     if (body.savejobs) {
-      const getListStringSavejob = oldUserData.savejobs.split(','); 
-      if(getListStringSavejob.includes(body.savejobs)){
-       const removeSavejob = getListStringSavejob.filter((item)=> item !== body.savejobs);
+      const savejobsArray = oldUserData.savejobs.split(','); 
+      if(savejobsArray.includes(body.savejobs)){
+       const removeSavejob = savejobsArray.filter((item)=> item !== body.savejobs);
        oldUserData.savejobs = removeSavejob.join(',');
-       oldUserData.savejobs = body.savejobs;
+       body.savejobs = oldUserData.savejobs;
       } else{
         if(oldUserData.savejobs){
           body.savejobs = oldUserData.savejobs + ',' + body.savejobs;
           const newSavejobsArray = body.savejobs.split(',');
-          const savejobsArray = oldUserData.savejobs.split(',')
           const mergedSavejobsArray = [...savejobsArray, ...newSavejobsArray];
           const uniqueSavejobsArray = [...new Set(mergedSavejobsArray)];
           const updatedSavejobs = uniqueSavejobsArray.join(',');
@@ -65,10 +64,8 @@ export class UserService {
         } else {
           oldUserData.savejobs = body.savejobs;
         }
-      }      
+      }          
     }
-    
-
     if(body.appliedjobs){
       if(oldUserData.appliedjobs){
         body.appliedjobs = oldUserData.appliedjobs + ',' + body.appliedjobs;
