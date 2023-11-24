@@ -9,6 +9,11 @@ import { updateJob } from './component/update_job_dto';
 export class JobController {
   constructor(private readonly jobService: JobService) {}
 
+
+  @Get()
+ async getNothing():Promise<Job[]> {
+    return await this.jobService.getNothing();
+  }
   @Get('alljobs')
  async getPosts():Promise<Job[]> {
     return await this.jobService.getJob();

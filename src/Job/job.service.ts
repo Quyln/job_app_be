@@ -15,6 +15,12 @@ export class JobService {
       @InjectRepository(Job)
         private readonly jobRepository: Repository<Job>,
     ){}
+
+    async getNothing():Promise<Job[]> {
+      const emptyList:Job[] = [];
+      return emptyList;
+    }
+
  async getJob():Promise<Job[]> {
     return await this.jobRepository.find();
   }
