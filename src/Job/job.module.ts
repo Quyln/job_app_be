@@ -6,9 +6,10 @@ import { Job } from "./job.entity";
 import { MailModule } from "src/mail/mail.module";
 import { UserService } from "src/User/user.service";
 import { UserModule } from "src/User/user.module";
+import { User } from "src/User/user.entity";
 
 @Module({
-    imports: [TypeOrmModule.forFeature([Job]), UserModule],
+    imports: [TypeOrmModule.forFeature([Job, User])],
     controllers: [JobController],
     providers: [JobService]
 })
