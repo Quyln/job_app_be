@@ -46,8 +46,8 @@ export class JobService {
     const year = new Date().getFullYear();
     const date:string = day.toString().padStart(2,'0') + '-' + month.toString().padStart(2,'0') + '-' + year;
     // covert string to string[]
-    const listMotacv:string[] = body.motacv.split(',').map((item)=>item.trim());
-    const listYeucaucv:string[] = body.yeucaucv.split(',').map((item)=> item.trim());
+    const listMotacv:string[] = body.motacv.split('.').map((item)=>item.trim());
+    const listYeucaucv:string[] = body.yeucaucv.split('.').map((item)=> item.trim());
     //covert string to number
     const latitude = parseFloat(body.latitude);
     const longitude = parseFloat(body.longitude);
