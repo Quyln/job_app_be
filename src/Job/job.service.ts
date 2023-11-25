@@ -25,9 +25,9 @@ export class JobService {
     return await this.jobRepository.find();
   }
  async getJobsByUser(id:string): Promise<string[]> {
-    const jobsList:Job[] = await this.jobRepository.find();
+    const jobsList:Job[] = await this.jobRepository.findBy({user: id});
     const jobsById:string[] = jobsList.map((post:Job)=> {
-      return post.user = id;
+      return post.id;
     })
     return  jobsById;
   }
