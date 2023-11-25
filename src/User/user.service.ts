@@ -172,7 +172,7 @@ export class UserService {
     })
     const to: string[] = [user.email];
     const subject: string = 'Có ứng viên vừa ứng tuyển việc làm của bạn! - VnJob -';
-    const text: string = `Xin chào ${user.companyname},\n\nTin vui! Có 1 người dùng vừa ứng tuyển vị trí ${body.jobposition} mà ${user.companyname} đã đăng tuyển làm việc tại ${body.khuvuchuyen}, ${body.khuvuctinh}.\n\nThông tin ứng viên: \nHọ tên: ${body.sendername}\nSố điện thoại: ${body.senderphone}\n\nĐừng để ứng viên đợi lâu, hãy liên lạc cho họ ngay bạn nhé!`;
+    const text: string = `Xin chào ${user.companyname},\n\nTin vui! Có 1 người dùng vừa ứng tuyển vị trí ${body.jobposition} mà ${user.companyname} đã đăng tuyển làm việc tại ${body.khuvuchuyen}, ${body.khuvuctinh}.\n\nThông tin ứng viên: \nHọ tên: ${body.sendername}\nSố điện thoại: ${body.senderphone}\nĐừng để ứng viên đợi lâu, hãy liên lạc cho họ ngay bạn nhé!`;
 
     const sendMailResult = await this.mailService.sendMail(to, subject, text);
 
