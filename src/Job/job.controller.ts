@@ -16,12 +16,12 @@ export class JobController {
     return await this.jobService.getNothing();
   }
   @Get('alljobs')
- async getPosts():Promise<Job[]> {
+ async getJob():Promise<Job[]> {
     return await this.jobService.getJob();
   }
-  @Get('user')
-async  getPostUser():Promise<string[]>{
-    return await this.jobService.getJobUser();
+  @Get('jobsbyuser')
+async  getJobsByUser(@Body() id:string):Promise<string[]>{
+    return await this.jobService.getJobsByUser(id);
   }
   @Get(':id')
 async getJobsById(@Param() params: any):Promise<Job[]>{

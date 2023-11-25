@@ -24,12 +24,12 @@ export class JobService {
  async getJob():Promise<Job[]> {
     return await this.jobRepository.find();
   }
- async getJobUser(): Promise<string[]> {
-    const userData:Job[] = await this.jobRepository.find();
-    const users:string[] = userData.map((post:Job)=> {
-      return post.user;
+ async getJobsByUser(id:string): Promise<string[]> {
+    const jobsList:Job[] = await this.jobRepository.find();
+    const jobsById:string[] = jobsList.map((post:Job)=> {
+      return post.user = id;
     })
-    return  users;
+    return  jobsById;
   }
   async getJobsById(id:string): Promise<Job[]> {
     const listIds:string[] = id.split(',').map((item)=>item.trim());

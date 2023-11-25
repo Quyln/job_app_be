@@ -77,19 +77,7 @@ export class UserService {
         oldUserData.appliedjobs = body.appliedjobs;
       }
     }
-    if(body.postedjobs){
-      if(oldUserData.postedjobs){
-        body.postedjobs = oldUserData.postedjobs + ',' + body.postedjobs;
-        const newPostedjobsArray = body.postedjobs.split(',');
-        const postedjobsArray = oldUserData.postedjobs.split(',')
-        const mergedPostedjobsArray = [...postedjobsArray, ...newPostedjobsArray];
-        const uniquePostedjobsArray = [...new Set(mergedPostedjobsArray)];
-        const updatedPostedjobs = uniquePostedjobsArray.join(',');
-        body.postedjobs = updatedPostedjobs;
-      } else {
-        oldUserData.postedjobs = body.postedjobs;
-      }
-    }
+    
     const newUserData = { ...oldUserData, ...body };
     return await this.userRepository.save(newUserData);
   }
