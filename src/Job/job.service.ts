@@ -5,6 +5,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Job } from './job.entity';
 import {  Repository,  } from 'typeorm';
 import { updateJob } from './component/update_job_dto';
+import { User } from 'src/User/user.entity';
 
 
 @Injectable()
@@ -14,6 +15,8 @@ export class JobService {
     constructor(
       @InjectRepository(Job)
         private readonly jobRepository: Repository<Job>,
+      @InjectRepository(User)
+        private readonly userRepository: Repository<User>,
     ){}
 
     async getNothing():Promise<Job[]> {
@@ -24,13 +27,17 @@ export class JobService {
  async getJob():Promise<Job[]> {
     return await this.jobRepository.find();
   }
- async getIdjobsByUser(userId:string): Promise<string[]> {
+ async getIdjobsByUser(userId:string): Promise<string> {
     const jobsList:Job[] = await this.jobRepository.find();
-    const filteredList:Job[] = jobsList.filter(job => job.user === userId)
+    const filteredList:Job[] = jobsList.filter(job => job.user === userId);
     const IdjobsList:string[] = filteredList.map((job:Job)=> {
       return job.id;
-    })
-    return  IdjobsList;
+    });
+    const Idjobs:string = IdjobsList.join(',');
+    const user:User = await this.userRepository.findOne({where:{id: userId}});
+    user.postedjobs = Idjobs;
+
+    return  user.postedjobs;
   }
   async getJobsById(id:string): Promise<Job[]> {
     const listIds:string[] = id.split(',').map((item)=>item.trim());
