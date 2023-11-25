@@ -3,11 +3,14 @@ import { JobService, } from './job.service';
 import { createJDto } from './component/create_job_dto';
 import { Job } from './job.entity';
 import { updateJob } from './component/update_job_dto';
+import { UserService } from 'src/User/user.service';
+import { SenderApplyJobDto } from './component/sender_applied_job_dto';
 
 
 @Controller('jobs')
 export class JobController {
-  constructor(private readonly jobService: JobService) {}
+  constructor(private readonly jobService: JobService,
+    ) {}
 
 
   @Get()
@@ -32,6 +35,10 @@ async getJobsById(@Param() params: any):Promise<Job[]>{
 async  createPost(@Body() body:createJDto):Promise<Job>{
     console.log('một việc làm mới được gửi lên server với nội dung là ', body)
     return await this.jobService.createJob(body);
+  }
+  @Post('appliedjob')
+ async sendEmailAppliedJob(@Body() body: SenderApplyJobDto):Promise<boolean>{
+    return await this.jobService.sendEmailAppliedJob(body);
   }
   @Patch(':id')
  async update(@Param() params: any, @Body() body:updateJob):Promise<Job>{
