@@ -25,11 +25,12 @@ export class JobService {
     return await this.jobRepository.find();
   }
  async getIdjobsByUser(userId:string): Promise<Job[]> {
-    const jobsList:Job[] = await this.jobRepository.findBy({user:userId});
+    const jobsList:Job[] = await this.jobRepository.find();
+    const filteredList:Job[] = jobsList.filter(Job => Job.user === userId)
     const jobsById:string[] = jobsList.map((job:Job)=> {
       return job.id;
     })
-    return  jobsList;
+    return  filteredList;
   }
   async getJobsById(id:string): Promise<Job[]> {
     const listIds:string[] = id.split(',').map((item)=>item.trim());
