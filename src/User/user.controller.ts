@@ -13,6 +13,7 @@ import { updateUserDto } from './component/update.user.dto';
 import { signInUserDto } from './component/signin.dto';
 import { forgotPasswordDto } from './component/forgot-password.dto';
 import { createUserDto } from './component/create.user.dto';
+import { SenderApplyJobDto } from 'src/User/component/appliedjob.dto';
 
 @Controller('users')
 export class UserController {
@@ -45,5 +46,10 @@ export class UserController {
   @Post('forgot-password')
   async forgotPassword(@Body() body: forgotPasswordDto): Promise<boolean> {
     return await this.userService.forgotPassword(body);
+  }
+
+  @Post('appliedjob')
+ async sendEmailAppliedJob(@Body() body: SenderApplyJobDto):Promise<boolean>{
+    return await this.userService.sendEmailAppliedJob(body);
   }
 }

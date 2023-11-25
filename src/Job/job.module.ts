@@ -8,7 +8,7 @@ import { UserService } from "src/User/user.service";
 import { UserModule } from "src/User/user.module";
 
 @Module({
-    imports: [TypeOrmModule.forFeature([Job]), MailModule, UserModule],
+    imports: [TypeOrmModule.forFeature([Job])],
     controllers: [JobController],
     providers: [JobService]
 })

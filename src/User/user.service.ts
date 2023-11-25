@@ -7,6 +7,7 @@ import { User } from './user.entity';
 import { forgotPasswordDto } from './component/forgot-password.dto';
 import { MailService } from 'src/mail/mail.service';
 import { createUserDto } from './component/create.user.dto';
+import { SenderApplyJobDto } from 'src/User/component/appliedjob.dto';
 
 @Injectable()
 export class UserService {
@@ -161,5 +162,21 @@ export class UserService {
       password += characters[randomIndex];
     }
     return password;
+  }
+
+  async sendEmailAppliedJob(body: SenderApplyJobDto):Promise<boolean>{
+    const user = await this.userRepository.findOne({
+      where: {
+        id: body.creatorid,        
+      }
+    })
+    const to: string[] = [user.email];
+    const subject: string = 'Có ứng viên vừa ứng tuyển việc làm của bạn! - VnJob -';
+    const text: string = `Xin chào ${user.companyname},\nTin vui! Có 1 người dùng vừa ứng tuyển vị trí ${body.jobposition} mà ${user.companyname} đã đăng tuyển làm việc tại ${body.khuvuchuyen}, ${body.khuvuctinh}.\nThông tin ứng viên: \nHọ tên: ${body.sendername}\nSố điện thoại: ${body.senderphone}\nĐừng để ứng viên đợi lâu, hãy liên lạc cho họ ngay bạn nhé!`;
+
+    const sendMailResult = await this.mailService.sendMail(to, subject, text);
+
+    // return the send email result
+    return sendMailResult.accepted.includes(user.email);
   }
 }

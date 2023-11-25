@@ -1,13 +1,10 @@
-import { Body, Injectable, Post } from '@nestjs/common';
-import { title } from 'process';
+import {  Injectable, Post } from '@nestjs/common';
+import {  } from 'process';
 import { createJDto } from './component/create_job_dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Job } from './job.entity';
-import { In, Repository, getRepository } from 'typeorm';
+import {  Repository,  } from 'typeorm';
 import { updateJob } from './component/update_job_dto';
-import { MailService } from 'src/mail/mail.service';
-import { User } from 'src/User/user.entity';
-import { SenderApplyJobDto } from './component/sender_applied_job_dto';
 
 
 @Injectable()
@@ -17,8 +14,6 @@ export class JobService {
     constructor(
       @InjectRepository(Job)
         private readonly jobRepository: Repository<Job>,
-        private readonly mailService: MailService,
-        private readonly userRepository: Repository<User>
     ){}
 
     async getNothing():Promise<Job[]> {
@@ -102,19 +97,5 @@ export class JobService {
     }    
   }
 
-  async sendEmailAppliedJob(body: SenderApplyJobDto):Promise<boolean>{
-    const user = await this.userRepository.findOne({
-      where: {
-        id: body.creatorid,        
-      }
-    })
-    const to: string[] = [user.email];
-    const subject: string = 'Có ứng viên vừa ứng tuyển việc làm của bạn! - VnJob -';
-    const text: string = `Xin chào ${user.companyname},\nTin vui! Có 1 người dùng vừa ứng tuyển vị trí ${body.jobposition} mà ${user.companyname} đã đăng tuyển làm việc tại ${body.khuvuchuyen}, ${body.khuvuctinh}.\nThông tin ứng viên: \nHọ tên: ${body.sendername}\nSố điện thoại: ${body.senderphone}\nĐừng để ứng viên đợi lâu, hãy liên lạc cho họ ngay bạn nhé!`;
-
-    const sendMailResult = await this.mailService.sendMail(to, subject, text);
-
-    // return the send email result
-    return sendMailResult.accepted.includes(user.email);
-  }
+  
 }
