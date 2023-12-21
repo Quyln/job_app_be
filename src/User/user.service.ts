@@ -20,15 +20,14 @@ export class UserService {
 
   async getListIdUser():Promise<filterUserDto[]>{
     const listIdUser:User[] = await this.userRepository.find();
-    const filteredList:User[] = listIdUser.filter(user => user.id && user.avatar && user.fullname && user.companyname);
-    const sanitizedList:filterUserDto[] = filteredList.map(user => ({
-      id: user.id ?? '',
-      avatar: user.avatar ?? '',
+    const filterdList:filterUserDto[] = listIdUser.map(user => ({
+      id: user.id,
+      avatar: user.avatar,
       fullname: user.fullname ?? '',
       companyname: user.companyname ?? ''
     }));
     
-    return sanitizedList;
+    return filterdList;
   }
 
   async createUser(body: createUserDto): Promise<User> {
