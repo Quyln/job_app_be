@@ -14,13 +14,14 @@ import { signInUserDto } from './component/signin.dto';
 import { forgotPasswordDto } from './component/forgot-password.dto';
 import { createUserDto } from './component/create.user.dto';
 import { SenderApplyJobDto } from 'src/User/component/appliedjob.dto';
+import { filterUserDto } from './component/filter.user.dto';
 
 @Controller('users')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Get('useridlist')
-  async getListIdUser():Promise<User[]>{
+  async getListIdUser():Promise<filterUserDto[]>{
     return await this.userService.getListIdUser();
   }
 
