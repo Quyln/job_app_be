@@ -17,6 +17,12 @@ export class UserService {
     private readonly mailService: MailService,
   ) {}
 
+  async getListIdUser():Promise<User[]>{
+    const listIdUser:User[] = await this.userRepository.find();
+    const filteredList:User[] = listIdUser.filter(user => user.id && user.avatar && user.fullname && user.companyname) 
+    return filteredList
+  }
+
   async createUser(body: createUserDto): Promise<User> {
     const token:number = 100;
     const newUser: User = {

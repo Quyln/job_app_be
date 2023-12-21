@@ -19,6 +19,11 @@ import { SenderApplyJobDto } from 'src/User/component/appliedjob.dto';
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
+  @Get('useridlist')
+  async getListIdUser():Promise<User[]>{
+    return await this.userService.getListIdUser();
+  }
+
   @Post()
   async createUser(@Body() body: createUserDto): Promise<User> {
     return await this.userService.createUser(body);
