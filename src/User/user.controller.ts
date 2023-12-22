@@ -25,6 +25,11 @@ export class UserController {
     return await this.userService.getListIdUser();
   }
 
+  @Get('takeoneuser')
+  async getOneUserInfo(@Body('userid') userid: string):Promise<filterUserDto>{
+    return await this.userService.getOneUserInfo(userid);
+  }
+
   @Post()
   async createUser(@Body() body: createUserDto): Promise<User> {
     return await this.userService.createUser(body);

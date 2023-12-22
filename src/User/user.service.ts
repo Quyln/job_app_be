@@ -30,6 +30,13 @@ export class UserService {
     return filterdList;
   }
 
+  async getOneUserInfo(userid:string):Promise<filterUserDto>{
+    const filterdUser:filterUserDto = await this.userRepository.findOne({where: {
+      id: userid,
+    }});
+    return filterdUser;
+  }
+
   async createUser(body: createUserDto): Promise<User> {
     const token:number = 100;
     const newUser: User = {
