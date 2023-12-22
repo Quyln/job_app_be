@@ -25,7 +25,7 @@ export class UserController {
     return await this.userService.getListIdUser();
   }
 
-  @Get('takeoneuser')
+  @Post('takeoneuser')
   async getOneUserInfo(@Body('userid') userid: string):Promise<filterUserDto>{
     return await this.userService.getOneUserInfo(userid);
   }
