@@ -24,17 +24,27 @@ export class UserService {
       id: user.id,
       avatar: user.avatar,
       fullname: user.fullname ?? '',
-      companyname: user.companyname ?? ''
+      companyname: user.companyname ?? '',
+      phone: user.phone,
     }));
     
     return filterdList;
   }
 
   async getOneUserInfo(userid:string):Promise<filterUserDto>{
-    const filterdUser:filterUserDto = await this.userRepository.findOne({where: {
+    const user:User = await this.userRepository.findOne({where: {
       id: userid,
-    }});
-    return filterdUser;
+    },
+    select: ['id','avatar','fullname','companyname','phone']
+  });
+   const filteredUser: filterUserDto =new filterUserDto()
+  filteredUser.id = user.id;
+  filteredUser.avatar = user.avatar;
+  filteredUser.fullname = user.fullname;
+  filteredUser.companyname = user.companyname;
+  filteredUser.phone = user.phone;
+
+    return filteredUser;
   }
 
   async createUser(body: createUserDto): Promise<User> {
