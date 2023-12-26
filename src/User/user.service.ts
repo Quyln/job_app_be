@@ -25,7 +25,6 @@ export class UserService {
       avatar: user.avatar,
       fullname: user.fullname ?? '',
       companyname: user.companyname ?? '',
-      phone: user.phone,
     }));
     
     return filterdList;
@@ -42,7 +41,6 @@ export class UserService {
   filteredUser.avatar = user.avatar;
   filteredUser.fullname = user.fullname;
   filteredUser.companyname = user.companyname;
-  filteredUser.phone = user.phone;
 
     return filteredUser;
   }

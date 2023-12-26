@@ -3,5 +3,4 @@ export class filterUserDto {
     fullname : string;
     companyname : string;
     avatar : string;
-    phone : string
 }
