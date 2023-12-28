@@ -115,10 +115,14 @@ export class UserService {
     }
     if(body.longitude){
       oldUserData.longitude = body.longitude
+      const newUserData = { ...oldUserData, ...body };
+      await this.userRepository.save(newUserData)
       return true;
     }
     if(body.latitude){
       oldUserData.latitude = body.latitude
+      const newUserData = { ...oldUserData, ...body };
+      await this.userRepository.save(newUserData)
       return true;
     }
   }
