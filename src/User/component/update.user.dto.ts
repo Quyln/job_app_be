@@ -11,4 +11,6 @@ export class updateUserDto {
         postedjobs? : string;
         avatar? : string;
         phone? : string;
+        longitude? : string;
+        latitude? : string;
      }

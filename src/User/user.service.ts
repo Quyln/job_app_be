@@ -113,8 +113,12 @@ export class UserService {
     await this.userRepository.save(newUserData);
     return true;
     }
-    
-    
+    if(body.longitude){
+      oldUserData.longitude = body.longitude
+    }
+    if(body.latitude){
+      oldUserData.latitude = body.latitude
+    }
   }
 
   async deleteUser(id: string): Promise<boolean> {
