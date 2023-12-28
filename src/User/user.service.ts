@@ -115,14 +115,9 @@ export class UserService {
     await this.userRepository.save(newUserData);
     return true;
     }
-    //update Longitude
-    if(body.longitude){
+    //update Latitude & Longitude
+    if(body.longitude && body.latitude){
       oldUserData.longitude = body.longitude
-      await this.userRepository.save(oldUserData)
-      return true;
-    }
-    //update Latitude
-    if(body.latitude){
       oldUserData.latitude = body.latitude
       await this.userRepository.save(oldUserData)
       return true;
