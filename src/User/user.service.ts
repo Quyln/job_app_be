@@ -133,13 +133,12 @@ export class UserService {
     if(body.password && body.newpassword){
       if (!oldUserData) {
         throw new Error('Người dùng không tồn tại');
-      }      
+      }
     if (body.password != oldUserData.password) {
     throw new Error('Mật khẩu hiện tại không đúng');
      } else {
     oldUserData.password = body.newpassword;
-    const newUserData = { ...oldUserData, ...body };
-      await this.userRepository.save(newUserData)
+      await this.userRepository.save(oldUserData)
       return true;
   }
 
