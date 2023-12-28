@@ -69,7 +69,7 @@ export class UserService {
     return newUser;
   }
 
-  async updateUser(id: string, body: updateUserDto): Promise<User> {
+  async updateUser(id: string, body: updateUserDto): Promise<boolean> {
     const oldUserData = await this.userRepository.findOne({
       where: {
         id: id,
@@ -92,7 +92,10 @@ export class UserService {
         } else {
           oldUserData.savejobs = body.savejobs;
         }
-      }          
+      }
+     const newUserData = { ...oldUserData, ...body };
+     await this.userRepository.save(newUserData);
+     return true;
     }
     if(body.appliedjobs){
       if(oldUserData.appliedjobs){
@@ -106,10 +109,12 @@ export class UserService {
       } else {
         oldUserData.appliedjobs = body.appliedjobs;
       }
+    const newUserData = { ...oldUserData, ...body };
+    await this.userRepository.save(newUserData);
+    return true;
     }
     
-    const newUserData = { ...oldUserData, ...body };
-    return await this.userRepository.save(newUserData);
+    
   }
 
   async deleteUser(id: string): Promise<boolean> {

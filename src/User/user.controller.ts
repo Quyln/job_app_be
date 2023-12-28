@@ -38,7 +38,7 @@ export class UserController {
   async updateUser(
     @Param() params: any,
     @Body() body: updateUserDto,
-  ): Promise<User> {
+  ): Promise<boolean> {
     const id: string = params.id;
     return await this.userService.updateUser(id, body);
   }
