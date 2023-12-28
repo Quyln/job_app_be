@@ -25,6 +25,10 @@ export class User {
   @Column()
   postedjobs?: string;
   @Column()
+  longitude?: string;
+  @Column()
+  latitude?: string;
+  @Column()
   token: number;
   @Column()
   companyname: string;

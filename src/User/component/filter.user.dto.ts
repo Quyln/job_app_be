@@ -3,4 +3,6 @@ export class filterUserDto {
     fullname : string;
     companyname : string;
     avatar : string;
+    longitude: string;
+    latitude: string;
 }

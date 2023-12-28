@@ -25,6 +25,8 @@ export class UserService {
       avatar: user.avatar,
       fullname: user.fullname ?? '',
       companyname: user.companyname ?? '',
+      longitude: user.longitude ?? '',
+      latitude: user.latitude ?? '',
     }));
     
     return filterdList;
