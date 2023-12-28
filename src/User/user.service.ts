@@ -115,9 +115,11 @@ export class UserService {
     }
     if(body.longitude){
       oldUserData.longitude = body.longitude
+      return true;
     }
     if(body.latitude){
       oldUserData.latitude = body.latitude
+      return true;
     }
   }
 
