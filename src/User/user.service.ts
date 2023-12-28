@@ -118,15 +118,13 @@ export class UserService {
     //update Longitude
     if(body.longitude){
       oldUserData.longitude = body.longitude
-      const newUserData = { ...oldUserData, ...body };
-      await this.userRepository.save(newUserData)
+      await this.userRepository.save(oldUserData)
       return true;
     }
     //update Latitude
     if(body.latitude){
       oldUserData.latitude = body.latitude
-      const newUserData = { ...oldUserData, ...body };
-      await this.userRepository.save(newUserData)
+      await this.userRepository.save(oldUserData)
       return true;
     }
     //Change Password
