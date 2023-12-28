@@ -75,6 +75,7 @@ export class UserService {
         id: id,
       },
     });
+    //savejobs
     if (body.savejobs) {
       const savejobsArray = oldUserData.savejobs.split(','); 
       if(savejobsArray.includes(body.savejobs)){
@@ -97,6 +98,7 @@ export class UserService {
      await this.userRepository.save(newUserData);
      return true;
     }
+    //appliedjobs
     if(body.appliedjobs){
       if(oldUserData.appliedjobs){
         body.appliedjobs = oldUserData.appliedjobs + ',' + body.appliedjobs;
@@ -113,17 +115,34 @@ export class UserService {
     await this.userRepository.save(newUserData);
     return true;
     }
+    //update Longitude
     if(body.longitude){
       oldUserData.longitude = body.longitude
       const newUserData = { ...oldUserData, ...body };
       await this.userRepository.save(newUserData)
       return true;
     }
+    //update Latitude
     if(body.latitude){
       oldUserData.latitude = body.latitude
       const newUserData = { ...oldUserData, ...body };
       await this.userRepository.save(newUserData)
       return true;
+    }
+    //Change Password
+    if(body.password && body.newpassword){
+      if (!oldUserData) {
+        throw new Error('Người dùng không tồn tại');
+      }      
+    if (body.password != oldUserData.password) {
+    throw new Error('Mật khẩu hiện tại không đúng');
+     } else {
+    oldUserData.password = body.newpassword;
+    const newUserData = { ...oldUserData, ...body };
+      await this.userRepository.save(newUserData)
+      return true;
+  }
+
     }
   }
 
