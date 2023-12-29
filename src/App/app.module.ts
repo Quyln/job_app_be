@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Module, NestModule, MiddlewareConsumer } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -7,6 +7,7 @@ import { JobModule } from 'src/Job/job.module';
 import { UserModule } from 'src/User/user.module';
 import { NewsModule } from 'src/News/news.module';
 import { MailModule } from 'src/mail/mail.module';
+import { json } from 'body-parser';
 
 @Module({
   imports: [
@@ -19,4 +20,10 @@ import { MailModule } from 'src/mail/mail.module';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer
+      .apply(json({ limit: '3mb' })) // Thay đổi giới hạn kích thước thành 10MB (hoặc giới hạn mong muốn)
+      .forRoutes('*');
+  }
+}
