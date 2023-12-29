@@ -117,9 +117,9 @@ export class UserService {
     }
     //update Latitude & Longitude
     if(body.longitude && body.latitude){
-      oldUserData.longitude = body.longitude
-      oldUserData.latitude = body.latitude
-      await this.userRepository.save(oldUserData)
+      oldUserData.longitude = body.longitude;
+      oldUserData.latitude = body.latitude;
+      await this.userRepository.save(oldUserData);
       return true;
     }
     //Change Password
@@ -131,11 +131,15 @@ export class UserService {
     throw new Error('Mật khẩu hiện tại không đúng');
      } else {
     oldUserData.password = body.newpassword;
-      await this.userRepository.save(oldUserData)
+      await this.userRepository.save(oldUserData);
       return true;
-  }
-
-    }
+     }}
+     //update avatar
+     if(body.avatar){
+      oldUserData.avatar = body.avatar;
+      await this.userRepository.save(oldUserData);
+      return true
+     }
   }
 
   async deleteUser(id: string): Promise<boolean> {
