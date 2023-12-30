@@ -7,7 +7,7 @@ import { JobModule } from 'src/Job/job.module';
 import { UserModule } from 'src/User/user.module';
 import { NewsModule } from 'src/News/news.module';
 import { MailModule } from 'src/mail/mail.module';
-import { json } from 'body-parser';
+import * as bodyParser from 'body-parser';
 
 @Module({
   imports: [
@@ -23,7 +23,10 @@ import { json } from 'body-parser';
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
     consumer
-      .apply(json({ limit: '3mb' })) // Thay đổi giới hạn kích thước thành 10MB (hoặc giới hạn mong muốn)
-      .forRoutes('*');
+    .apply(bodyParser.json({ limit: '10mb' }))
+    .forRoutes('*');
+  consumer
+    .apply(bodyParser.urlencoded({ extended: true, limit: '10mb' }))
+    .forRoutes('*');
   }
 }
