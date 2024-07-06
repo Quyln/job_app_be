@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { BadRequestException, ConflictException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { signInUserDto } from './component/signin.dto';
@@ -48,6 +48,17 @@ export class UserService {
   }
 
   async createUser(body: createUserDto): Promise<User> {
+     // Kiểm tra xem người dùng đã tồn tại không
+  const existingUser = await this.userRepository.findOne({ where: { id: body.id } });
+  if (existingUser) {
+    throw new ConflictException(`Đã tồn tại ${body.id}, vui lòng chọn ID khác`);
+  }
+
+  // Kiểm tra xem email đã tồn tại không
+  const existingEmail = await this.userRepository.findOne({ where: { email: body.email } });
+  if (existingEmail) {
+    throw new ConflictException(`Đã tồn tại ${body.email} vui lòng chọn Email khác`);
+  }
     const token:number = 100;
     const newUser: User = {
       id: body.id,
