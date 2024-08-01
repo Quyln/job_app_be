@@ -6,6 +6,7 @@ import { updateUserDto } from './component/update.user.dto';
 import { User } from './user.entity';
 import { forgotPasswordDto } from './component/forgot-password.dto';
 import { MailService } from 'src/mail/mail.service';
+import crypto from 'crypto';
 
 @Injectable()
 export class UserService {
@@ -81,8 +82,12 @@ export class UserService {
     // generate new password for user
     const newPassword: string = this.generatePassword();
 
+    // hashed password 
+    const hashedPassword1: string = this.hashPassword(newPassword);
+    const hashedPassword2: string = this.hashPassword(`${hashedPassword1} qtech`);
+
     // update password for user into database
-    const userWithNewPassword: User = { ...user, password: newPassword };
+    const userWithNewPassword: User = { ...user, password: hashedPassword2 };
     await this.userRepository.save(userWithNewPassword);
 
     //send password to user through email
@@ -107,5 +112,10 @@ export class UserService {
     return password;
   }
 
+  private hashPassword(password: string): string {
+    const sha256 = crypto.createHash('sha256');
+    sha256.update(password);
+    return sha256.digest('hex');
+  }
 
 }
