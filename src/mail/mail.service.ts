@@ -17,7 +17,7 @@ export class MailService {
     });
 
     const info = await transporter.sendMail({
-      from: '"VnJob" <lunhatquy1111@gmail.com>', // sender address
+      from: '"Q-TECH Solution HR Manager" <lunhatquy1111@gmail.com>', // sender address
       to: to, // list of receivers
       subject: subject, // Subject line
       text: text, // plain text body

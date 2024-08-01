@@ -87,8 +87,8 @@ export class UserService {
 
     //send password to user through email
     const to: string[] = [user.email];
-    const subject: string = 'Khôi phục mật khẩu mới cho tài khoản Job App';
-    const text: string = `Xin chào ${user.fullname}${user.companyname},\nBạn đã thành công thay đổi mật khẩu của tài khoản JobApp. Mật khẩu mới của bạn là: ${newPassword} `;
+    const subject: string = 'Khôi phục mật khẩu mới cho tài khoản Q-TECH Solution HR Manager.';
+    const text: string = `Xin chào ${user.fullname},\nBạn đã thành công thay đổi mật khẩu. Mật khẩu mới của bạn là: ${newPassword} `;
 
     const sendMailResult = await this.mailService.sendMail(to, subject, text);
 
