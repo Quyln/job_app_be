@@ -6,7 +6,7 @@ import { updateUserDto } from './component/update.user.dto';
 import { User } from './user.entity';
 import { forgotPasswordDto } from './component/forgot-password.dto';
 import { MailService } from 'src/mail/mail.service';
-import crypto from 'crypto';
+import * as crypto from 'crypto';
 
 @Injectable()
 export class UserService {
