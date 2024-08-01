@@ -11,19 +11,11 @@ export class User {
   @Column()
   email: string;
   @Column()
-  position: 'Thành viên' | 'Nhà tuyển dụng';
-  @Column()
-  lastjob: string;
+  position: String;
   @Column()
   avatar: string;
   @Column()
   phone: string;
-  @Column()
-  savejobs?: string;
-  @Column()
-  appliedjobs?: string;
-  @Column()
-  postedjobs?: string;
   @Column()
   longitude?: string;
   @Column()

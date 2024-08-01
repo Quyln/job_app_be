@@ -12,28 +12,14 @@ import { User } from './user.entity';
 import { updateUserDto } from './component/update.user.dto';
 import { signInUserDto } from './component/signin.dto';
 import { forgotPasswordDto } from './component/forgot-password.dto';
-import { createUserDto } from './component/create.user.dto';
-import { SenderApplyJobDto } from 'src/User/component/appliedjob.dto';
-import { filterUserDto } from './component/filter.user.dto';
 
 @Controller('users')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
-  @Get('useridlist')
-  async getListIdUser():Promise<filterUserDto[]>{
-    return await this.userService.getListIdUser();
-  }
 
-  @Post('takeoneuser')
-  async getOneUserInfo(@Body('userid') userid: string):Promise<filterUserDto>{
-    return await this.userService.getOneUserInfo(userid);
-  }
 
-  @Post()
-  async createUser(@Body() body: createUserDto): Promise<User> {
-    return await this.userService.createUser(body);
-  }
+
   @Patch(':id')
   async updateUser(
     @Param() params: any,
@@ -43,11 +29,6 @@ export class UserController {
     return await this.userService.updateUser(id, body);
   }
 
-  @Delete(':id')
-  async deleteUser(@Param() params: any) {
-    const id: string = params.id;
-    return await this.userService.deleteUser(id);
-  }
 
   @Post('signin')
   async signin(@Body() body: signInUserDto): Promise<User> {
@@ -59,8 +40,5 @@ export class UserController {
     return await this.userService.forgotPassword(body);
   }
 
-  @Post('appliedjob')
- async sendEmailAppliedJob(@Body() body: SenderApplyJobDto):Promise<boolean>{
-    return await this.userService.sendEmailAppliedJob(body);
-  }
+
 }
