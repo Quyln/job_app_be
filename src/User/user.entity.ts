@@ -25,5 +25,5 @@ export class User {
   @Column()
   companyname: string;
   @Column()
-  companytax: string;
+  companytag: string;
 }

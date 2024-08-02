@@ -5,7 +5,7 @@ export class updateUserDto {
         newpassword? :string;
         fullname? : string;
         companyname? : string;
-        companytax? : string;
+        companytag? : string;
         avatar? : string;
         phone? : string;
         longitude? : string;
