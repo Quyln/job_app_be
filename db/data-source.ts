@@ -10,7 +10,7 @@ function getConfig(): DataSourceOptions {
     database: 'postgres',
     entities: ['dist/**/*.entity.{ts,js}'],
     migrations: ['dist/db/migrations/*.js'],
-    synchronize: false,
+    synchronize: true,
   };
 }
 
