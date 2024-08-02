@@ -3,7 +3,7 @@ import { Column, Entity,PrimaryColumn } from "typeorm";
 @Entity()
 export class LCCOM {
     @PrimaryColumn()
-    companytag: String;
+    companytag: string;
     @Column()
     companyname: string;
     @Column()
