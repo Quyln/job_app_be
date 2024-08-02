@@ -26,4 +26,6 @@ export class User {
   companyname: string;
   @Column()
   companytag: string;
+  @Column()
+  ggsheet: string;
 }

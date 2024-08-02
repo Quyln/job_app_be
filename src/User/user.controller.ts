@@ -10,8 +10,6 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
 
 
-
-
   @Patch(':id')
   async updateUser(
     @Param() params: any,
