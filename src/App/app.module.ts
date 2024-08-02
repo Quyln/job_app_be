@@ -7,12 +7,14 @@ import { UserModule } from 'src/User/user.module';
 import { NewsModule } from 'src/News/news.module';
 import { MailModule } from 'src/mail/mail.module';
 import * as bodyParser from 'body-parser';
+import { LCCOMModule } from 'src/LCCOM/lccom.module';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot(dataSourceOptions),
     UserModule,
     NewsModule,
+    LCCOMModule,
     MailModule,
   ],
   controllers: [AppController],
