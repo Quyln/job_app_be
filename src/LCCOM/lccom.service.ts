@@ -10,5 +10,9 @@ export class LCCOMService {
     private readonly lccomRepository: Repository<LCCOM>,
   ) {}
 
+  async getLocations(): Promise<LCCOM[]> {
+    const locations = await this.lccomRepository.find();
+    return locations;
+  }
 
 }

@@ -3,8 +3,13 @@ import { LCCOMService } from './lccom.service';
 import { LCCOM } from './lccom.entity';
 
 
-@Controller('users')
+@Controller('LCCOM')
 export class LCCOMController {
   constructor(private readonly lccomService: LCCOMService) {}
+
+@Get()
+async getLocations(): Promise<LCCOM[]>{
+    return await this.lccomService.getLocations();
+}
 
 }
