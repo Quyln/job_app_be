@@ -21,6 +21,7 @@ export class UserService {
     const oldUserData = await this.userRepository.findOne({
       where: {
         id: id,
+        password : body.password
       },
     });
     
