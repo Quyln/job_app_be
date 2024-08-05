@@ -36,6 +36,12 @@ export class UserService {
       await this.userRepository.save(oldUserData);
       return true;
     }
+    // Update DailyRoute
+    if(body.dailyroute){
+      oldUserData.dailyroute =  body.dailyroute;
+      await this.userRepository.save(oldUserData);
+      return true;
+    }
     //Change Password
     if(body.password && body.newpassword){
       if (!oldUserData) {

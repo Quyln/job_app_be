@@ -28,4 +28,6 @@ export class User {
   companytag: string;
   @Column()
   ggsheet: string;
+  @Column()
+  dailyroute?: string;
 }

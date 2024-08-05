@@ -5,4 +5,5 @@ export class updateUserDto {
         avatar? : string;
         longitude? : string;
         latitude? : string;
+        dailyroute? :string;
      }
