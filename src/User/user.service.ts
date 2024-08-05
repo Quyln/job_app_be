@@ -25,6 +25,10 @@ export class UserService {
       },
     });
     
+    if (body.password != oldUserData.password || !oldUserData) {
+      throw new Error('Sai thông tin tài khoản!');
+       } else {
+          
     //update Latitude & Longitude
     if(body.longitude && body.latitude){
       oldUserData.longitude = body.longitude;
@@ -50,6 +54,8 @@ export class UserService {
     //   await this.userRepository.save(oldUserData);
     //   return true
     //  }
+       }
+  
   }
 
 
