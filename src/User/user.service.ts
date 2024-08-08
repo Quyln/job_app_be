@@ -7,6 +7,8 @@ import { User } from './user.entity';
 import { forgotPasswordDto } from './component/forgot-password.dto';
 import { MailService } from 'src/mail/mail.service';
 import * as crypto from 'crypto';
+import { UserRouteClass } from './component/user_route_class';
+import { ManageRouteIn } from './component/manage_route';
 
 @Injectable()
 export class UserService {
@@ -78,6 +80,35 @@ export class UserService {
       throw new BadRequestException('Sai mật khẩu');
     }
     return userSignIn;
+  }
+
+
+  async routeList(body: ManageRouteIn): Promise<UserRouteClass[]> {
+    const checkUser:User = await this.userRepository.findOne({
+      where: {
+        id: body.id,
+        password: body.password,
+        position: 'HR Manager',
+        companytag : body.companytag
+      },
+    });
+    if (!checkUser) {
+      throw new BadRequestException('Tài khoản không tồn tại');
+    }
+    if (checkUser.password != body.password) {
+      throw new BadRequestException('Sai mật khẩu');
+    }
+    if (checkUser.position != 'HR Manager') {
+      throw new BadRequestException('Không có quyền truy cập');
+    }
+    const listUser:User[] = await this.userRepository.find(
+     {where: {
+      companytag : body.companytag
+     },select: ['id','fullname','dailyroute']
+     }
+    );
+    const listUserRoute:UserRouteClass[] = listUser.map(user => ({id: user.id, fullname: user.fullname, dailyroute: user.dailyroute}));
+    return listUserRoute;
   }
 
   async forgotPassword(body: forgotPasswordDto): Promise<boolean> {

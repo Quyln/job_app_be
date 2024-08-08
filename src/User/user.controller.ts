@@ -4,6 +4,8 @@ import { User } from './user.entity';
 import { updateUserDto } from './component/update.user.dto';
 import { signInUserDto } from './component/signin.dto';
 import { forgotPasswordDto } from './component/forgot-password.dto';
+import { ManageRouteIn } from './component/manage_route';
+import { UserRouteClass } from './component/user_route_class';
 
 @Controller('users')
 export class UserController {
@@ -23,6 +25,11 @@ export class UserController {
   @Post('signin')
   async signin(@Body() body: signInUserDto): Promise<User> {
     return await this.userService.signIn(body);
+  }
+  
+  @Post('routeList')
+  async routeList(@Body() body: ManageRouteIn): Promise<UserRouteClass[]> {
+    return await this.userService.routeList(body);
   }
 
   @Post('forgot-password')
