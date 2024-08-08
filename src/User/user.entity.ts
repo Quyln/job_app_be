@@ -30,4 +30,12 @@ export class User {
   ggsheet: string;
   @Column()
   dailyroute?: string;
+  @Column()
+  starttime1?: string;
+  @Column()
+  starttime2?: string;
+  @Column()
+  endtime1?: string;
+  @Column()
+  endtime2?: string;
 }
