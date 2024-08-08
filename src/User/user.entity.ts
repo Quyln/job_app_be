@@ -31,11 +31,19 @@ export class User {
   @Column()
   dailyroute?: string;
   @Column()
-  starttime1?: string;
+  starthour1?: string;
+  @Column()
+  startminute1?: string;
   @Column()
   starttime2?: string;
   @Column()
-  endtime1?: string;
+  startminute2?: string;
   @Column()
-  endtime2?: string;
+  endhour1?: string;
+  @Column()
+  endminute1?: string;
+  @Column()
+  endhour2?: string;
+  @Column()
+  endminute2?: string;
 }
