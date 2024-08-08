@@ -35,7 +35,7 @@ export class User {
   @Column()
   startminute1?: string;
   @Column()
-  starttime2?: string;
+  starthour2?: string;
   @Column()
   startminute2?: string;
   @Column()
