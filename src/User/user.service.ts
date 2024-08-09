@@ -103,7 +103,8 @@ export class UserService {
     }
     const listUser:User[] = await this.userRepository.find(
      {where: {
-      companytag : body.companytag
+      companytag : body.companytag,
+      position : 'Staff'
      },select: ['id','fullname','dailyroute']
      }
     );
