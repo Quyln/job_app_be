@@ -11,7 +11,7 @@ export class User {
   @Column()
   email: string;
   @Column()
-  position: String;
+  position: string;
   @Column()
   avatar: string;
   @Column()
