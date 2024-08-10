@@ -44,6 +44,17 @@ export class UserService {
       await this.userRepository.save(oldUserData);
       return true;
     }
+        // Update Staff CheckStatus
+        if(oldUserData.position == 'HR Manager'){
+          const staffAccount =  await this.userRepository.findOne({
+            where: {
+              id: body.idstaff,
+            }
+          })
+          staffAccount.checkstatus = body.staffcheckstatus;
+          await this.userRepository.save(staffAccount);
+          return true;
+        }
     //Change Password
     if(body.password && body.newpassword){
       if (!oldUserData) {
