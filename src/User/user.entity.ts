@@ -31,6 +31,8 @@ export class User {
   @Column()
   dailyroute?: string;
   @Column()
+  checkstatus?: string;
+  @Column()
   starthour1?: number;
   @Column()
   startminute1?: number;
