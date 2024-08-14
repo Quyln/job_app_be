@@ -44,29 +44,30 @@ export class UserService {
       await this.userRepository.save(oldUserData);
       return true;
     }
-        // Update Staff CheckStatus
-        if(oldUserData.position == 'HR Manager'){
-          const staffAccount =  await this.userRepository.findOne({
-            where: {
-              id: body.idstaff,
-            }
-          })
-          staffAccount.checkstatus = body.staffcheckstatus;
-          await this.userRepository.save(staffAccount);
-          return true;
-        }
+    // Update Staff CheckStatus
+    if(oldUserData.position == 'HR Manager'){
+    const staffAccount =  await this.userRepository.findOne({
+      where: {
+        id: body.idstaff,
+      }
+      })
+      staffAccount.checkstatus = body.staffcheckstatus;
+      await this.userRepository.save(staffAccount);
+      return true;
+    }
     //Change Password
     if(body.password && body.newpassword){
-      if (!oldUserData) {
-        throw new Error('Người dùng không tồn tại');
-      }
-    if (body.password != oldUserData.password) {
-    throw new Error('Mật khẩu hiện tại không đúng');
-     } else {
-    oldUserData.password = body.newpassword;
+      oldUserData.password = body.newpassword;
       await this.userRepository.save(oldUserData);
       return true;
-     }}
+    //   if (!oldUserData) {
+    //     throw new Error('Người dùng không tồn tại');
+    //   }
+    // if (body.password != oldUserData.password) {
+    // throw new Error('Mật khẩu hiện tại không đúng');
+    //  } else {
+    //  }
+    }
     //update avatar
     //  if(body.avatar){
     //   oldUserData.avatar = body.avatar;
