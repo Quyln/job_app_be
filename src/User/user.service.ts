@@ -23,7 +23,7 @@ export class UserService {
     const oldUserData = await this.userRepository.findOne({
       where: {
         id: id,
-        password : body.password
+        // password : body.password
       },
     });
     
@@ -57,16 +57,16 @@ export class UserService {
     }
     //Change Password
     if(body.password && body.newpassword){
+      if (!oldUserData) {
+        throw new Error('Người dùng không tồn tại');
+      }
+    if (body.password != oldUserData.password) {
+    throw new Error('Mật khẩu hiện tại không đúng');
+     } else {
       oldUserData.password = body.newpassword;
       await this.userRepository.save(oldUserData);
       return true;
-    //   if (!oldUserData) {
-    //     throw new Error('Người dùng không tồn tại');
-    //   }
-    // if (body.password != oldUserData.password) {
-    // throw new Error('Mật khẩu hiện tại không đúng');
-    //  } else {
-    //  }
+     }
     }
     //update avatar
     //  if(body.avatar){
