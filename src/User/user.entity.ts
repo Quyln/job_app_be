@@ -11,7 +11,7 @@ export class User {
   @Column()
   email: string;
   @Column()
-  position: String;
+  position: string;
   @Column()
   avatar: string;
   @Column()
@@ -30,6 +30,8 @@ export class User {
   ggsheet: string;
   @Column()
   dailyroute?: string;
+  @Column()
+  checkstatus?: string;
   @Column()
   starthour1?: number;
   @Column()

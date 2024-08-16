@@ -44,6 +44,17 @@ export class UserService {
       await this.userRepository.save(oldUserData);
       return true;
     }
+    // Update Staff CheckStatus
+    if(oldUserData.position == 'HR Manager'){
+    const staffAccount =  await this.userRepository.findOne({
+      where: {
+        id: body.idstaff,
+      }
+      })
+      staffAccount.checkstatus = body.staffcheckstatus;
+      await this.userRepository.save(staffAccount);
+      return true;
+    }
     //Change Password
     if(body.password && body.newpassword){
       if (!oldUserData) {
@@ -52,10 +63,11 @@ export class UserService {
     if (body.password != oldUserData.password) {
     throw new Error('Mật khẩu hiện tại không đúng');
      } else {
-    oldUserData.password = body.newpassword;
+      oldUserData.password = body.newpassword;
       await this.userRepository.save(oldUserData);
       return true;
-     }}
+     }
+    }
     //update avatar
     //  if(body.avatar){
     //   oldUserData.avatar = body.avatar;
@@ -105,10 +117,10 @@ export class UserService {
      {where: {
       companytag : body.companytag,
       position : 'Staff'
-     },select: ['id','fullname','dailyroute']
+     },select: ['id','fullname','dailyroute','checkstatus','position']
      }
     );
-    const listUserRoute:UserRouteClass[] = listUser.map(user => ({id: user.id, fullname: user.fullname, dailyroute: user.dailyroute}));
+    const listUserRoute:UserRouteClass[] = listUser.map(user => ({id: user.id, fullname: user.fullname, dailyroute: user.dailyroute,checkstatus :user.checkstatus,position : user.position}));
     return listUserRoute;
   }
 
