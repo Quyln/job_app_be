@@ -17,5 +17,5 @@ export class LCCOM {
     @Column()
     phone?: string;
     @Column()
-    anddress?: string;
+    address?: string;
 }
