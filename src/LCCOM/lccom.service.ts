@@ -11,7 +11,6 @@ export class LCCOMService {
   constructor(
     @InjectRepository(LCCOM)
     private readonly lccomRepository: Repository<LCCOM>,
-    @InjectRepository(User)
     private readonly userRespository: Repository<User>,
 
   ) {}
@@ -65,9 +64,9 @@ export class LCCOMService {
           id : id,
           companytag : body.companytag
         }
-      })
+      });
       // Update LatLng
-      if(!currentLocation){
+      if(currentLocation){
         if(body.latitude && body.longitude){
           currentLocation.latitude = body.latitude;
           currentLocation.longitude =  body.longitude;
