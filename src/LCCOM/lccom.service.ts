@@ -9,7 +9,9 @@ import { createLocationClass } from './component/create.com.dto';
 @Injectable()
 export class LCCOMService {
   constructor(
+    @InjectRepository(LCCOM)
     private readonly lccomRepository: Repository<LCCOM>,
+    @InjectRepository(User)
     private readonly userRespository: Repository<User>,
 
   ) {}
