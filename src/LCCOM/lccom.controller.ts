@@ -1,4 +1,4 @@
-import {  Body,  Controller,  Delete,  Get,  Param,  Patch,  Post} from '@nestjs/common';
+import {  Body,  Controller,  Delete,  Get,  Param,  Patch,  Post, Req} from '@nestjs/common';
 import { LCCOMService } from './lccom.service';
 import { LCCOM } from './lccom.entity';
 import { updateComClass } from './component/update.com.dto';
@@ -29,11 +29,10 @@ async configureLocation(
 
 @Delete(':id')
 async deleteLocation(
-  @Param() params: any,
-  @Body() body: updateComClass,
+  @Param(':id') id: string,
+  @Req() request: updateComClass
 ): Promise<boolean>{
-  const id: string = params.id;
-  return await this.lccomService.deleteLocation(id,body);
+  return await this.lccomService.deleteLocation(id,request);
 }
 
 }
