@@ -66,7 +66,14 @@ export class LCCOMService {
           companytag : body.companytag
         }
       });
-      // Update LatLng
+      currentLocation.latitude = body.latitude;
+      currentLocation.longitude = body.longitude;
+      currentLocation.branchname = body.branchname;
+      currentLocation.address = body.address;
+      currentLocation.phone = body.phone;
+      await this.lccomRepository.save(currentLocation);
+      return true;
+            // Update LatLng
       if(body.latitude && body.longitude){
         currentLocation.latitude = body.latitude;
         currentLocation.longitude = body.longitude;
