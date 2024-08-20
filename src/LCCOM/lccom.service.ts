@@ -42,7 +42,8 @@ export class LCCOMService {
         phone: body.phone,
         address: body.address,
        };
-       return await this.lccomRepository.save(newLocation);
+       await this.lccomRepository.save(newLocation);
+       return true;
     }
   }
 
