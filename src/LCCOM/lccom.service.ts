@@ -57,7 +57,7 @@ export class LCCOMService {
       },
     });
 
-    if(!oldUserData || body.password != oldUserData.password){
+    if(oldUserData == null){
       throw new Error("You cannot do it");
     } else {
       const currentLocation = await this.lccomRepository.findOne({
@@ -66,11 +66,11 @@ export class LCCOMService {
           companytag : body.companytag
         }
       });
-      if(currentLocation){
+      if(currentLocation != null){
         // Update LatLng
         if(body.latitude && body.longitude){
           currentLocation.latitude = body.latitude;
-          currentLocation.longitude =  body.longitude;
+          currentLocation.longitude = body.longitude;
           await this.lccomRepository.save(currentLocation);
           return true;
         }
@@ -92,6 +92,9 @@ export class LCCOMService {
           await this.lccomRepository.save(currentLocation);
           return true;
         }
+        
+      } else {
+        return false
       }
     }
 }
