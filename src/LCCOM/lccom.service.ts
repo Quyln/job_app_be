@@ -66,8 +66,8 @@ export class LCCOMService {
           companytag : body.companytag
         }
       });
-      // Update LatLng
       if(currentLocation){
+        // Update LatLng
         if(body.latitude && body.longitude){
           currentLocation.latitude = body.latitude;
           currentLocation.longitude =  body.longitude;
