@@ -66,35 +66,30 @@ export class LCCOMService {
           companytag : body.companytag
         }
       });
-      if(currentLocation != null){
-        // Update LatLng
-        if(body.latitude && body.longitude){
-          currentLocation.latitude = body.latitude;
-          currentLocation.longitude = body.longitude;
-          await this.lccomRepository.save(currentLocation);
-          return true;
-        }
-        // Update BranchName
-        if(body.branchname){
-          currentLocation.branchname = body.branchname;
-          await this.lccomRepository.save(currentLocation);
-          return true;
-        }
-         // Update Address
-         if(body.address){
-          currentLocation.address = body.address;
-          await this.lccomRepository.save(currentLocation);
-          return true;
-        }
-         // Update Phone
-         if(body.phone){
-          currentLocation.phone = body.phone;
-          await this.lccomRepository.save(currentLocation);
-          return true;
-        }
-        
-      } else {
-        return false
+      // Update LatLng
+      if(body.latitude && body.longitude){
+        currentLocation.latitude = body.latitude;
+        currentLocation.longitude = body.longitude;
+        await this.lccomRepository.save(currentLocation);
+        return true;
+      }
+      // Update BranchName
+      if(body.branchname){
+        currentLocation.branchname = body.branchname;
+        await this.lccomRepository.save(currentLocation);
+        return true;
+      }
+       // Update Address
+       if(body.address){
+        currentLocation.address = body.address;
+        await this.lccomRepository.save(currentLocation);
+        return true;
+      }
+       // Update Phone
+       if(body.phone){
+        currentLocation.phone = body.phone;
+        await this.lccomRepository.save(currentLocation);
+        return true;
       }
     }
 }
