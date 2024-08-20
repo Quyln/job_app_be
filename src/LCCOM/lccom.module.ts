@@ -9,7 +9,7 @@ import { UserService } from "src/User/user.service";
 import { UserModule } from "src/User/user.module";
 
 @Module({
-imports : [TypeOrmModule.forFeature([LCCOM, User]), MailModule, UserModule],
+imports : [TypeOrmModule.forFeature([LCCOM]), MailModule, UserModule],
 controllers: [LCCOMController],
 providers: [LCCOMService,UserService],
 exports: [LCCOMService,UserService]
