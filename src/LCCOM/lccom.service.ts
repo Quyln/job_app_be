@@ -96,22 +96,23 @@ export class LCCOMService {
     }
 }
 
-async deleteLocation(id: string, request: updateComClass): Promise<boolean> {
+async deleteLocation( body: updateComClass): Promise<boolean> {
   const oldUserData = await this.userRespository.findOne({
     where: {
-      id: request.userid,
-      password : request.password,
-      position : "HR Manager"
+      id: body.userid,
+      password : body.password,
+      position : "HR Manager",
+      companytag : body.companytag,
     },
   });
 
-  if(!oldUserData || request.password != oldUserData.password){
+  if(!oldUserData || body.password != oldUserData.password){
     throw new Error("You cannot do it");
   } else {
     const currentLocation = await this.lccomRepository.findOne({
       where: {
-        id : id,
-        companytag : request.companytag
+        id : body.id,
+        companytag : body.companytag
       }
     })
     await this.lccomRepository.remove(currentLocation)

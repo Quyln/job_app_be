@@ -27,12 +27,10 @@ async configureLocation(
   return await this.lccomService.configureLocation(id, body);
 }
 
-@Delete(':id')
+@Post('deleteLocation')
 async deleteLocation(
-  @Param(':id') id: string,
-  @Req() request: updateComClass
-): Promise<boolean>{
-  return await this.lccomService.deleteLocation(id,request);
+  @Body() body: updateComClass): Promise<boolean>{
+  return await this.lccomService.deleteLocation(body);
 }
 
 }
