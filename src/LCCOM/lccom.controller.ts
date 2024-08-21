@@ -13,7 +13,7 @@ export class LCCOMController {
 async getLocations(): Promise<LCCOM[]>{
     return await this.lccomService.getLocations();
 }
-@Post()
+@Post('createLocation')
 async createLocation(@Body() body: createLocationClass): Promise<boolean> {
   return await this.lccomService.createLocation(body);
 }

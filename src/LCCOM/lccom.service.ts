@@ -26,7 +26,7 @@ export class LCCOMService {
       where: {
         id: body.userid,
         password : body.password,
-        position : "HR Manager"
+        position : 'HR Manager'
       },
     });
 
