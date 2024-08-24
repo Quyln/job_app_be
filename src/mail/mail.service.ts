@@ -11,13 +11,13 @@ export class MailService {
       port: 465,
       secure: true,
       auth: {
-        user: 'lunhatquy1111@gmail.com',
-        pass: 'iwni qwjw otck pxoe',
+        user: 'congngheqtech@gmail.com',
+        pass: 'sskx mlhs qyxu wjal',
       },
     });
 
     const info = await transporter.sendMail({
-      from: '"Q-TECH Solution HR Manager" <lunhatquy1111@gmail.com>', // sender address
+      from: '"Q-TECH Solution HR Manager" <congngheqtech@gmail.com>', // sender address
       to: to, // list of receivers
       subject: subject, // Subject line
       text: text, // plain text body
