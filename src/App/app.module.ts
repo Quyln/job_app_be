@@ -8,6 +8,7 @@ import { NewsModule } from 'src/News/news.module';
 import { MailModule } from 'src/mail/mail.module';
 import * as bodyParser from 'body-parser';
 import { LCCOMModule } from 'src/LCCOM/lccom.module';
+import { JobModule } from 'src/Job/job.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { LCCOMModule } from 'src/LCCOM/lccom.module';
     NewsModule,
     LCCOMModule,
     MailModule,
+    JobModule,
   ],
   controllers: [AppController],
   providers: [AppService],
