@@ -29,6 +29,8 @@ export class User {
   @Column()
   ggsheet: string;
   @Column()
+  postedjobs?: string;
+  @Column()
   dailyroute?: string;
   @Column()
   checkstatus?: string;
