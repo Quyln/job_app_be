@@ -10,7 +10,7 @@ export class Job {
     title:string;
     @Column()
     position:string;
-    @Column('text', { array: true, default: []})
+    @Column('text', {array: true, default: []})
     motacv:string[];
     @Column('text', {array:true, default: []})
     yeucaucv:string[];

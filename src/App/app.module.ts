@@ -9,6 +9,7 @@ import { MailModule } from 'src/mail/mail.module';
 import * as bodyParser from 'body-parser';
 import { LCCOMModule } from 'src/LCCOM/lccom.module';
 import { JobModule } from 'src/Job/job.module';
+import { VideosModule } from 'src/Videos/videos.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { JobModule } from 'src/Job/job.module';
     LCCOMModule,
     MailModule,
     JobModule,
+    VideosModule,
   ],
   controllers: [AppController],
   providers: [AppService],
