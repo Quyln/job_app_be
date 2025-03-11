@@ -35,6 +35,8 @@ export class User {
   @Column()
   checkstatus?: string;
   @Column()
+  savejobs?: string;
+  @Column()
   starthour1?: number;
   @Column()
   startminute1?: number;
