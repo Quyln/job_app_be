@@ -78,17 +78,10 @@ export class UserService {
       return true;
     }
     //Change Password
-    if(body.password && body.newpassword){
-      if (!oldUserData) {
-        throw new Error('Người dùng không tồn tại');
-      }
-    if (body.password != oldUserData.password) {
-    throw new Error('Mật khẩu hiện tại không đúng');
-     } else {
+    if(body.newpassword){
       oldUserData.password = body.newpassword;
       await this.userRepository.save(oldUserData);
       return true;
-     }
     }
     //update avatar
     //  if(body.avatar){
