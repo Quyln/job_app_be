@@ -37,5 +37,8 @@ export class UserController {
     return await this.userService.forgotPassword(body);
   }
 
-
+  @Post('change-password')
+  async changePassword(@Body() body: updateUserDto): Promise<boolean> {
+    return await this.userService.changePassword(body);
+  }
 }

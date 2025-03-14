@@ -76,20 +76,7 @@ export class UserService {
       staffAccount.checkstatus = body.staffcheckstatus;
       await this.userRepository.save(staffAccount);
       return true;
-    }
-    //Change Password
-    if(body.password && body.newpassword){
-      if (!oldUserData) {
-        throw new Error('Người dùng không tồn tại');
-      }
-    if (body.password != oldUserData.password) {
-    throw new Error('Mật khẩu hiện tại không đúng');
-     } else {
-      oldUserData.password = body.newpassword;
-      await this.userRepository.save(oldUserData);
-      return true;
-     }
-    }
+    }    
     //update avatar
     //  if(body.avatar){
     //   oldUserData.avatar = body.avatar;
@@ -144,6 +131,22 @@ export class UserService {
     );
     const listUserRoute:UserRouteClass[] = listUser.map(user => ({id: user.id, fullname: user.fullname, dailyroute: user.dailyroute,checkstatus :user.checkstatus,position : user.position}));
     return listUserRoute;
+  }
+
+  async changePassword(body:updateUserDto):Promise<boolean>{
+    const user: User = await this.userRepository.findOne({
+      where: {
+        id: body.id,
+        password:body.password
+      }
+    });
+    if(!user){
+      throw new BadRequestException('Người dùng không tồn tại');
+    } else {
+      user.password = body.newpassword
+      await this.userRepository.save(user);
+      return true;
+    }
   }
 
   async forgotPassword(body: forgotPasswordDto): Promise<boolean> {
