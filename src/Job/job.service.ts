@@ -50,7 +50,8 @@ export class JobService {
   const oldUserData = await this.userRepository.findOne({
     where: {
       id: body.userid,
-      password : body.password
+      password : body.password,
+      position: 'HR Manager'
     },
   });
   
@@ -97,7 +98,8 @@ export class JobService {
   const oldUserData = await this.userRepository.findOne({
     where: {
       id: body.userid,
-      password : body.password
+      password : body.password,
+      position: 'HR Manager'
     },
   });
   
@@ -148,7 +150,8 @@ export class JobService {
   const oldUserData = await this.userRepository.findOne({
     where: {
       id: body.userid,
-      password : body.password
+      password : body.password,
+      position: 'HR Manager'
     },
   });
   
