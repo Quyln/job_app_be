@@ -2,7 +2,7 @@ import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/commo
 import { JobService, } from './job.service';
 import { createJDto } from './component/create_job_dto';
 import { Job } from './job.entity';
-import { updateJob } from './component/update_job_dto';
+import { updateJDto } from './component/update_job_dto';
 
 
 @Controller('jobs')
@@ -36,14 +36,14 @@ async  createPost(@Body() body:createJDto):Promise<Job>{
   }
   
   @Patch(':id')
- async update(@Param() params: any, @Body() body:updateJob):Promise<Job>{
+ async update(@Param() params: any, @Body() body:updateJDto):Promise<boolean>{
   const id:string = params.id;
       return await this.jobService.updateJob(id,body);
   }
 
-  @Delete(':id')
- async deleteJob(@Param() params: any){
-    const id:string = params.id
-    return await this.jobService.deleteJob(id);
-  }
+@Post('deleteJob')
+async deleteJob(
+  @Body() body: updateJDto): Promise<boolean>{
+  return await this.jobService.deleteJob(body);
+}
 }

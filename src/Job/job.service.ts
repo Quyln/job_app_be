@@ -4,7 +4,7 @@ import { createJDto } from './component/create_job_dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Job } from './job.entity';
 import {  Repository,  } from 'typeorm';
-import { updateJob } from './component/update_job_dto';
+import { updateJDto } from './component/update_job_dto';
 import { User } from 'src/User/user.entity';
 
 
@@ -47,7 +47,17 @@ export class JobService {
   }
 
  async createJob(body: createJDto):Promise<Job>{
-    const id:string = new Date().getTime().toString();
+  const oldUserData = await this.userRepository.findOne({
+    where: {
+      id: body.userid,
+      password : body.password
+    },
+  });
+  
+  if (body.password != oldUserData.password || !oldUserData) {
+    throw new Error('Sai thông tin tài khoản!');
+     } else {
+      const id:string = new Date().getTime().toString();
     // get date
     const day = new Date().getDate();
     const month = new Date().getMonth() + 1;
@@ -64,7 +74,7 @@ export class JobService {
     const newPost:Job = {
       id: id,
       title: body.title,
-      user: body.user,
+      user: body.userid,
       date: date,
       position: body.position,
       salary: body.salary,
@@ -80,29 +90,80 @@ export class JobService {
     }
    await  this.jobRepository.save(newPost);
      return newPost;
+     }
+    
   }
- async updateJob(id: string, body:updateJob):Promise<Job>{
-    const oldData = await this.jobRepository.findOne({
-      where: {
-        id:id
+ async updateJob(id: string, body:updateJDto):Promise<boolean>{
+  const oldUserData = await this.userRepository.findOne({
+    where: {
+      id: body.userid,
+      password : body.password
+    },
+  });
+  
+  if (body.password != oldUserData.password || !oldUserData) {
+    throw new Error('Sai thông tin tài khoản!');
+     } else {
+      const oldJobData = await this.jobRepository.findOne({
+        where: {
+          id:id
+        }
+      })
+      if(id != oldJobData.id || !oldJobData){
+        throw new Error ('Không có việc này')
+      } else {
+
+        if (body.image) oldJobData.image = body.image;
+        if (body.khuvuchuyen) oldJobData.khuvuchuyen = body.khuvuchuyen;
+        if (body.khuvuctinh) oldJobData.khuvuctinh = body.khuvuctinh;
+        if (body.latitude) {
+          const latitude = parseFloat(body.latitude);
+          oldJobData.latitude = latitude;}       
+        if (body.longitude){
+          const longitude = parseFloat(body.longitude);
+          oldJobData.longitude = longitude;
+        } 
+        if (body.motacv){
+          const listMotacv:string[] = body.motacv.split('.').map((item)=>item.trim());
+          oldJobData.motacv = listMotacv;
+        } 
+        if (body.position) oldJobData.position = body.position;
+        if (body.salary) oldJobData.salary = body.salary;
+        if (body.tencty) oldJobData.tencty = body.tencty;
+        if (body.title) oldJobData.title = body.title;
+        if (body.yeucaucv){
+          const listYeucaucv:string[] = body.yeucaucv.split('.').map((item)=> item.trim());
+          oldJobData.yeucaucv = listYeucaucv;
+        } 
+      
+        await this.jobRepository.save(oldJobData);
+      
+        return true;
       }
-    })
-    const newData = {...oldData, ...body}
-    return await this.jobRepository.save(newData);
+     }
+   
   }
   
- async deleteJob(id:string):Promise<boolean>{
-    const currentData = await this.jobRepository.find({
-      where: {
-        id:id
-      }
-    })
-    if (currentData.length >0){
+ async deleteJob(body:updateJDto):Promise<boolean>{
+  const oldUserData = await this.userRepository.findOne({
+    where: {
+      id: body.userid,
+      password : body.password
+    },
+  });
+  
+  if (body.password != oldUserData.password || !oldUserData) {
+    throw new Error('Sai thông tin tài khoản!');
+     } else {
+      const currentData = await this.jobRepository.findOne({
+        where: {
+          id: body.jobid
+        }
+      })
       await this.jobRepository.remove(currentData)
-    return true;
-    } else {
-      return false;
-    }    
+return true
+     }
+    
   }
 
   
