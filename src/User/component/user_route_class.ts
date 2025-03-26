@@ -4,4 +4,6 @@ export class UserRouteClass {
     dailyroute : string;
     checkstatus : string;
     position : string;
+    phone : string;
+    leader : string;
 }

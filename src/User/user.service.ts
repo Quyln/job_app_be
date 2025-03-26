@@ -126,10 +126,10 @@ export class UserService {
      {where: {
       companytag : body.companytag,
       position : 'Staff'
-     },select: ['id','fullname','dailyroute','checkstatus','position']
+     },select: ['id','fullname','dailyroute','checkstatus','position','phone','leader']
      }
     );
-    const listUserRoute:UserRouteClass[] = listUser.map(user => ({id: user.id, fullname: user.fullname, dailyroute: user.dailyroute,checkstatus :user.checkstatus,position : user.position}));
+    const listUserRoute:UserRouteClass[] = listUser.map(user => ({id: user.id, fullname: user.fullname, dailyroute: user.dailyroute,checkstatus :user.checkstatus,position : user.position, phone : user.phone, leader : user.leader}));
     return listUserRoute;
   }
 
