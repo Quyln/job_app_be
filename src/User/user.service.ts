@@ -9,6 +9,7 @@ import { MailService } from 'src/mail/mail.service';
 import * as crypto from 'crypto';
 import { UserRouteClass } from './component/user_route_class';
 import { ManageRouteIn } from './component/manage_route';
+import { filterUserDto } from './component/filter.user.dto';
 
 @Injectable()
 export class UserService {
@@ -17,6 +18,68 @@ export class UserService {
     private readonly userRepository: Repository<User>,
     private readonly mailService: MailService,
   ) {}
+
+    async getListIdUser():Promise<filterUserDto[]>{
+    const listIdUser:User[] = await this.userRepository.find();
+    const filterdList:filterUserDto[] = listIdUser.map(user => ({
+      id: user.id,
+      avatar: user.avatar,
+      fullname: user.fullname ?? '',
+      companyname: user.companyname ?? '',
+      longitude: user.longitude ?? '',
+      latitude: user.latitude ?? '',
+    }));
+    
+    return filterdList;
+  }
+
+  async getOneUserInfo(userid:string):Promise<filterUserDto>{
+    const user:User = await this.userRepository.findOne({where: {
+      id: userid,
+    },
+    select: ['id','avatar','fullname','companyname','phone']
+  });
+   const filteredUser: filterUserDto =new filterUserDto()
+  filteredUser.id = user.id;
+  filteredUser.avatar = user.avatar;
+  filteredUser.fullname = user.fullname;
+  filteredUser.companyname = user.companyname;
+
+    return filteredUser;
+  }
+
+  // async createUser(body: createUserDto): Promise<User> {
+  //    // Kiểm tra xem người dùng đã tồn tại không
+  // const existingUser = await this.userRepository.findOne({ where: { id: body.id } });
+  // if (existingUser) {
+  //   throw new ConflictException(`Đã tồn tại ${body.id}, vui lòng chọn ID khác`);
+  // }
+
+  // // Kiểm tra xem email đã tồn tại không
+  // const existingEmail = await this.userRepository.findOne({ where: { email: body.email } });
+  // if (existingEmail) {
+  //   throw new ConflictException(`Đã tồn tại ${body.email} vui lòng chọn Email khác`);
+  // }
+  //   const token:number = 100;
+  //   const newUser: User = {
+  //     id: body.id,
+  //     email: body.email,
+  //     password: body.password,
+  //     fullname: body.fullname,
+  //     position: body.position,
+  //     companyname: body.companyname,
+  //     companytax: body.companytax,
+  //     lastjob: body.lastjob,
+  //     savejobs: body.savejobs,
+  //     appliedjobs: body.appliedjobs,
+  //     postedjobs: body.postedjobs,
+  //     avatar: body.avatar,
+  //     phone: body.phone,
+  //     token: token,
+  //   };
+  //   await this.userRepository.save(newUser);
+  //   return newUser;
+  // }
 
 
   async updateUser(id: string, body: updateUserDto): Promise<boolean> {
@@ -199,5 +262,37 @@ export class UserService {
     sha256.update(password);
     return sha256.digest('hex');
   }
+
+  // async deleteUser(id: string): Promise<boolean> {
+  //   const user = await this.userRepository.find({
+  //     where: {
+  //       id: id,
+  //     },
+  //   });
+  //   if (user.length > 0) {
+  //     await this.userRepository.remove(user);
+  //     return true;
+  //   } else {
+  //     return false;
+  //   }
+  // }
+
+
+  // async sendEmailAppliedJob(body: SenderApplyJobDto):Promise<boolean>{
+  //   const user = await this.userRepository.findOne({
+  //     where: {
+  //       id: body.creatorid,        
+  //     }
+  //   })
+  //   const to: string[] = [user.email];
+  //   const subject: string = 'Có ứng viên vừa ứng tuyển việc làm của bạn! - VnJob -';
+  //   const text: string = `Xin chào ${user.companyname},\n\nCó 1 người dùng vừa ứng tuyển vị trí ${body.jobposition} mà ${user.companyname} đã đăng tuyển làm việc tại ${body.khuvuchuyen}, ${body.khuvuctinh}.\nThông tin ứng viên: \nHọ tên: ${body.sendername}\nSố điện thoại: ${body.senderphone}\nĐừng để ứng viên đợi lâu, hãy liên lạc cho họ ngay bạn nhé!`;
+
+  //   const sendMailResult = await this.mailService.sendMail(to, subject, text);
+
+  //   // return the send email result
+  //   return sendMailResult.accepted.includes(user.email);
+  // }
+
 
 }
