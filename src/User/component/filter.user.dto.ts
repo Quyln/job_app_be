@@ -5,4 +5,5 @@ export class filterUserDto {
     avatar : string;
     longitude: string;
     latitude: string;
+    phone: string;
 }

@@ -28,6 +28,7 @@ export class UserService {
       companyname: user.companyname ?? '',
       longitude: user.longitude ?? '',
       latitude: user.latitude ?? '',
+      phone: user.phone ?? '',
     }));
     
     return filterdList;
