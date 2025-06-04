@@ -12,4 +12,9 @@ export class AppController {
     return this.appService.getHello();
   }
 
+  @Get('version')
+  getVersion(): string {
+    return '1.3.1';
+  }
+
 }
