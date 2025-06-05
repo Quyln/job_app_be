@@ -29,6 +29,8 @@ export class User {
   @Column()
   ggsheet: string;
   @Column()
+  ggsheetjob: string;
+  @Column()
   leader: string;
   @Column()
   postedjobs?: string;
