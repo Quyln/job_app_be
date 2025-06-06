@@ -6,7 +6,7 @@ export class updateUserDto {
         longitude? : string;
         latitude? : string;
         dailyroute? :string;
-        token? :string;
+        token? :number;
         savejobs? : string;
         idstaff? :string;
         staffcheckstatus? : string;
