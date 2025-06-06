@@ -130,6 +130,12 @@ export class UserService {
       await this.userRepository.save(oldUserData);
       return true;
     }
+    // Update Token
+    if(body.token){
+      oldUserData.token =  body.token;
+      await this.userRepository.save(oldUserData);
+      return true;
+    }
     // Update Staff CheckStatus
     if(oldUserData.position == 'HR Manager'){
     const staffAccount =  await this.userRepository.findOne({
