@@ -136,6 +136,14 @@ export class UserService {
       await this.userRepository.save(oldUserData);
       return true;
     }
+
+    // Update lastCheckinTokenTime
+    if(body.lastCheckinTokenTime){
+      oldUserData.lastCheckinTokenTime = body.lastCheckinTokenTime;
+      await this.userRepository.save(oldUserData);
+      return true;
+    }
+    
     // Update Staff CheckStatus
     if(oldUserData.position == 'HR Manager'){
     const staffAccount =  await this.userRepository.findOne({
