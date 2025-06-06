@@ -132,7 +132,7 @@ export class UserService {
     }
     // Update Token
     if(body.token){
-      oldUserData.token =  body.token;
+      oldUserData.token += body.token;
       await this.userRepository.save(oldUserData);
       return true;
     }
