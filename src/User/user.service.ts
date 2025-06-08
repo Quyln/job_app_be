@@ -10,6 +10,8 @@ import * as crypto from 'crypto';
 import { UserRouteClass } from './component/user_route_class';
 import { ManageRouteIn } from './component/manage_route';
 import { filterUserDto } from './component/filter.user.dto';
+import { requestPushTokenUser } from './component/request.pushtoken';
+import { getPushTokenUser } from './component/get.pushtoken';
 
 @Injectable()
 export class UserService {
@@ -82,6 +84,25 @@ export class UserService {
   //   return newUser;
   // }
 
+  async getPushToken(body: requestPushTokenUser):Promise<getPushTokenUser>{
+    const oldUserData = await this.userRepository.findOne({
+      where: {
+        id: body.id,
+        password : body.password
+      },
+    });
+    
+    if (body.password != oldUserData.password || !oldUserData) {
+      throw new Error('Sai thông tin tài khoản!');
+       } else {
+        const partner = await this.userRepository.findOne({
+      where: {
+        id: body.partnerid,
+      },
+    });
+    return partner.pushtoken;
+       }
+  }
 
   async updateUser(id: string, body: updateUserDto): Promise<boolean> {
     const oldUserData = await this.userRepository.findOne({
