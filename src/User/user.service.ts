@@ -143,6 +143,13 @@ export class UserService {
       await this.userRepository.save(oldUserData);
       return true;
     }
+
+     // Update pushtoken
+    if(body.pushtoken){
+      oldUserData.pushtoken = body.pushtoken;
+      await this.userRepository.save(oldUserData);
+      return true;
+    }
     
     // Update Staff CheckStatus
     if(oldUserData.position == 'HR Manager'){

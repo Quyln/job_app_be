@@ -23,6 +23,8 @@ export class User {
   @Column()
   token: number;
   @Column()
+  pushtoken?: string;
+  @Column()
   lastCheckinTokenTime: string;
   @Column()
   companyname: string;
