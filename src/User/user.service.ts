@@ -84,7 +84,7 @@ export class UserService {
   //   return newUser;
   // }
 
-  async getPushToken(body: requestPushTokenUser):Promise<getPushTokenUser>{
+  async getPushToken(body: requestPushTokenUser):Promise<string>{
     const oldUserData = await this.userRepository.findOne({
       where: {
         id: body.id,

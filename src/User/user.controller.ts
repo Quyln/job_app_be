@@ -7,7 +7,6 @@ import { forgotPasswordDto } from './component/forgot-password.dto';
 import { ManageRouteIn } from './component/manage_route';
 import { UserRouteClass } from './component/user_route_class';
 import { filterUserDto } from './component/filter.user.dto';
-import { getPushTokenUser } from './component/get.pushtoken';
 import { requestPushTokenUser } from './component/request.pushtoken';
 
 @Controller('users')
@@ -25,7 +24,7 @@ export class UserController {
   }
 
    @Post('getpushtoken')
-  async getpushtoken(@Body() body: requestPushTokenUser):Promise<getPushTokenUser>{
+  async getpushtoken(@Body() body: requestPushTokenUser):Promise<string>{
     return await this.userService.getPushToken(body);
   }
 
