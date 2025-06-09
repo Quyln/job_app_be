@@ -24,7 +24,7 @@ export class UserController {
   }
 
    @Post('getpushtoken')
-  async getpushtoken(@Body() body: requestPushTokenUser):Promise<string>{
+  async getpushtoken(@Body() body: requestPushTokenUser):Promise<string[]>{
     return await this.userService.getPushToken(body);
   }
 

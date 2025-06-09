@@ -83,7 +83,7 @@ export class UserService {
   //   return newUser;
   // }
 
-  async getPushToken(body: requestPushTokenUser):Promise<string>{
+  async getPushToken(body: requestPushTokenUser):Promise<string[]>{
     const oldUserData = await this.userRepository.findOne({
       where: {
         id: body.id,
@@ -94,13 +94,13 @@ export class UserService {
     if (body.password != oldUserData.password || !oldUserData) {
       throw new Error('Sai thông tin tài khoản!');
        } else {
-        const partner = await this.userRepository.findOne({
-      where: {
-        id: body.partnerid,
-      },
+        // Lấy tất cả user có id trong mảng partnerids
+    const partners = await this.userRepository.find({
+      where: body.partnerids.map((id) => ({ id })),
     });
-    return partner.pushtoken;
-       }
+    // Trả về mảng pushtoken
+    return partners.map((partner) => partner.pushtoken).filter(Boolean);
+   }
   }
 
   async updateUser(id: string, body: updateUserDto): Promise<boolean> {
